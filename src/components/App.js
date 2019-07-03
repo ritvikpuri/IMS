@@ -22,7 +22,8 @@ class App extends Component {
     this.getDataInApp2=this.getDataInApp2.bind(this);
 
   }
-   getDataInApp(val){    
+   getDataInApp(val){   
+      if(val==='login')return; 
      if(val.admin){
       this.setState({
       current:'Admin'

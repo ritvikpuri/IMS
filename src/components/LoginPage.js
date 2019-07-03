@@ -50,9 +50,10 @@ class LoginPage extends Component {
       console.log(" the result is ",result);
       result.json().then((response)=>{
         console.log(" the final response is ",response);
-          if(response){
+          if(response.empId!=='0'){
             this.props.sendDataToLogin(response); 
           }
+          
       })
     })
   }

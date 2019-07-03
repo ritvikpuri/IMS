@@ -57,13 +57,16 @@ class PreviewRequests extends Component {
       },
       body: JSON.stringify(this.props.info[index])
     })
+		 var array2=[...this.state.current];
+      array2[index]=array2[index+1];
+      this.setState({current:array2});
 	}
 	render(){
     return this.props.info.map((item,index) => (
        <div className="new">	
        		<p className="new1" key={item.id} >{item.itemName}<span>  </span>{item.empName} </p>
 	        {this.state.current[index]==='accepted'?
-	        	(<><p key={index}>mail sent</p><button className="delbtn" key={item.itemName} onClick={()=>this.confirm(index)}>confirm</button></>)
+	        	(<><p key={index}>mail sent</p><button className="delbtn" key={item.itemName} onClick={()=>this.confirm(index)}>confirm</button><button className="delbtn" key={item.empName} onClick={()=>this.reject(index)}>reject</button></>)
 	        	:
 	        	(
 	        	<>

@@ -61,11 +61,13 @@ render() {
      <div>
         <div className="split2 left2">
           <div className="centered2">
-           <PreviewHistory info={this.state.inactiveInfo}/>
+            <h1 className="H">Request History</h1>
+            <PreviewHistory info={this.state.inactiveInfo}/>
           </div>
         </div>
         <div className="split2 right2">
           <div className="centered2">
+            <h1 className="H">Active Requests</h1>
             <PreviewRequests info={this.state.activeInfo} />
           </div>
         </div>

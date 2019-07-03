@@ -1,58 +1,107 @@
 import React, { Component } from 'react';
+import Preview from './Preview';
 import './../App.css';
-import LoginPage from './LoginPage';
 
 class LoggedIn extends React.Component {
   constructor(props){
   super(props);   
   this.state = {
     curState:'init',
-    empName:'',
-    empId:'',
-    itemName:'',
-    time:'',
+    info:[],
+    selectedElement:{
+      empId:'',
+      itemName:'',
+      requestDate:'',
+      acceptDate:'',
+      active:false
+    }
+ 
     }
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleFinalSubmit=this.handleFinalSubmit.bind(this);
+    this.handleRequest=this.handleRequest.bind(this);
+    this.handleStationary = this.handleStationary.bind(this);
+    this.handleDevices = this.handleDevices.bind(this);
+    this.handleMedicine = this.handleMedicine.bind(this);
+  
   }
 
-  onMount(){
-///get array if option selected,
-
+  handleStationary(){
+  
+   fetch('http://10.0.2.235:8080/inventory/stationary', {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      this.setState({info:json});
+    })
+    .catch(error => console.log(error));
+      this.setState({curState:'fin'});
   }
 
-handleRequest(e){
-  /////submit to db
-  this.props.sendDataToApp('login');
-  localStorage.setItem(this.state.formName,JSON.stringify(this.state.fields));
-  console.log("in finalSubmit");      
+  handleDevices(){
+  
+   fetch('http://10.0.2.235:8080/inventory/devices', {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      this.setState({info:json});
+    })
+    .catch(error => console.log(error));
+      this.setState({curState:'fin'});
+  }
+    handleMedicine(){
+     
+fetch('http://10.0.2.235:8080/inventory/medicine', {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      this.setState({info:json});
+    })
+    .catch(error => console.log(error));
+     this.setState({curState:'fin'});
+  }
+
+
+handleRequest(index){
+  console.log("element=",this.state.info[index].itemName);
+  console.log('in req',this.props.user.empId);
+fetch('http://10.0.2.235:8080/request', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    empId:this.props.user.empId,
+    empName:this.props.user.empName,
+    itemName:this.state.info[index].itemName,
+    requestDate:'s',
+    acceptDate:'asd',
+    active:false
+  })
+})
 }
-
 handleLogout(e){
   localStorage.clear();
-  this.props.sendDataToApp('login');
+  this.props.sendDataToLogin('login');
 }
 
 render() {
     return (
       <div>
-        <h1 className="H">{this.state.formName}</h1>
-        this.state.fields.map((item,index) => (
-       <div>  
-          <p className="abc2" key={item.label} >{item.label}</p>
-          <input className="abc3" type="text" value={this.state.value} onChange={(e)=>this.handleChange(index,e)}/>
-          <br/>
-          <br/>
-          <br/>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <div>
-          <button className="btn1" onClick={this.handleFinalSubmit } >submit</button>
-      </div>
+        <button className="ButtonUser" onClick={this.handleStationary}>stationary</button>
+        <button className="ButtonUser" onClick={this.handleDevices}>devices</button>
+        <button className="ButtonUser" onClick={this.handleMedicine}>medicine</button>
+
+        {this.state.curState!='init'?<Preview info={this.state.info} sendFunction={this.handleRequest}/>:false}
+
         <div className="logout">
-          <button onClick={this.handleLogout}><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+          <button onClick={this.handleLogout}>log out</button>
         </div>
       </div>
     )

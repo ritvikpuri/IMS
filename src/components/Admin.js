@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PreviewRequests from './PreviewRequests';
 import PreviewHistory from './PreviewHistory';
+import UpdateInventory from './UpdateInventory';
 
 import './../App2.css';
 
@@ -10,11 +11,13 @@ class LoggedInAsAdmin extends React.Component {
   this.state = {
       activeInfo:[],
       inactiveInfo:[],
-      current:'active',
+      current:'history',
       timer:0
     }
  
   this.getItems=this.getItems.bind(this);
+  this.handleSwitch=this.handleSwitch.bind(this);
+
   }
 componentWillUnmount() {
   this.state.timer = null;
@@ -47,10 +50,18 @@ getItems(){
     .catch(error => console.log(error));
       this.setState({curState:'fin'});
   }
-
-     
-
-
+  handleSwitch(){
+   if(this.state.current==='history'){
+     this.setState({
+      current:'form'
+    })
+   }
+   else{
+     this.setState({
+      current:'history'
+    })
+   }
+  }
 handleLogout(e){
   localStorage.clear();
   this.props.sendDataToLogin('login');
@@ -61,8 +72,10 @@ render() {
      <div>
         <div className="split2 left2">
           <div className="centered2">
-            <h1 className="H">Request History</h1>
-            <PreviewHistory info={this.state.inactiveInfo}/>
+            <button onClick={this.handleSwitch}>switch</button>
+             <h1 className="H">Request History</h1>
+            {this.state.current==='history'?<PreviewHistory info={this.state.inactiveInfo}/>:false}
+            {this.state.current==='form'?<UpdateInventory/>:false}
           </div>
         </div>
         <div className="split2 right2">
@@ -76,3 +89,6 @@ render() {
   }
 }
 export default LoggedInAsAdmin
+
+
+ 

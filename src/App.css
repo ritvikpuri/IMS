@@ -274,4 +274,17 @@ margin-left:20px;
 margin-left:10% !important;
 font-size:20px;
 }
+
+
+.TH{
+width:80% !important;
+margin-left:20% !important;
+margin-top:0 !important;
+text-align:center !important;
+}
+.btnn{
+margin-left:0 important;
+margin-top:0 !important;
+width:80% !important;
+}
 }

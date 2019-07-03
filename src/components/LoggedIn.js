@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Preview from './Preview';
+import {Table,Button} from 'react-bootstrap';
 import './../App.css';
 
 class LoggedIn extends React.Component {
@@ -96,9 +97,26 @@ render() {
         <button className="ButtonUser" onClick={this.handleStationary}>stationary</button>
         <button className="ButtonUser" onClick={this.handleDevices}>devices</button>
         <button className="ButtonUser" onClick={this.handleMedicine}>medicine</button>
-
-        {this.state.curState!='init'?<Preview info={this.state.info} sendFunction={this.handleRequest}/>:false}
-
+        {this.state.curState!='init'?(<><Table striped bordered hover>
+          <thead >
+            <tr className="TH">
+               <th>item name</th>
+                <th>send request</th>
+            </tr>
+          </thead>
+          <tbody>
+             {this.state.info.map((item,index)=>{
+            
+                   return (
+              <tr className="TH" key={item.id}>
+                <td className="TH" key={item.itemName}>{item.itemName}</td>
+                <td className="TH" key={index}><Button className="btnn" onClick={()=>this.handleRequest(index)}>request</Button></td>
+            </tr>
+              )
+              })
+           }
+          </tbody>
+        </Table></>):false}
         <div className="logout">
           <button onClick={this.handleLogout}>log out</button>
         </div>

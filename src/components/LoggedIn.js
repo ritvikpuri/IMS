@@ -80,8 +80,6 @@ fetch('http://10.0.2.235:8080/request', {
     empId:this.props.user.empId,
     empName:this.props.user.empName,
     itemName:this.state.info[index].itemName,
-    requestDate:'s',
-    acceptDate:'asd',
     active:false
   })
 })
@@ -94,6 +92,7 @@ handleLogout(e){
 render() {
     return (
       <div>
+
         <button className="ButtonUser" onClick={this.handleStationary}>stationary</button>
         <button className="ButtonUser" onClick={this.handleDevices}>devices</button>
         <button className="ButtonUser" onClick={this.handleMedicine}>medicine</button>

@@ -5,11 +5,11 @@ class SignupPage extends Component {
   constructor() {
     super();
     this.state = {
-      email:'Email',
-      name:'Name',
-      username: 'Employee Id',
-      password: 'Password',
-      department:'Department',
+      email:'',
+      name:'',
+      username: '',
+      password: '',
+      department:'',
       error: ''
     };
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -94,20 +94,31 @@ fetch('http://10.0.2.235:8080/signup', {
                 {this.state.error}
               </h3>
             }
-           
-            <input type="text" data-test="email" value={this.state.email} onChange={this.handleEmailChange} onClick={()=>this.setState({email:''})} required />
+            <label className="SignupLabel">Email</label>
+            <input className="SignupInput" type="text" data-test="email" value={this.state.email} onChange={this.handleEmailChange} required />
             <br/>
-           
-            <input type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} onClick={()=>this.setState({username:''})} required/>
             <br/>
-            <input type="text" data-test="name" value={this.state.name} onChange={this.handleNameChange} onClick={()=>this.setState({name:''})} required />
             <br/>
-            <input type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} onClick={()=>this.setState({password:''})} required />
+            <label className="SignupLabel">Employee Id</label>
+            <input className="SignupInput" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} required/>
             <br/>
-
-            <input type="text" data-test="department" value={this.state.department} onChange={this.handleDepartmentChange} onClick={()=>this.setState({department:''})} required />
             <br/>
-
+            <br/>
+            <label className="SignupLabel">Name</label>
+            <input className="SignupInput" type="text" data-test="name" value={this.state.name} onChange={this.handleNameChange} required />
+            <br/>
+            <br/>
+            <br/>
+            <label className="SignupLabel">Password</label>
+            <input className="SignupInput" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} required />
+            <br/>
+            <br/>
+            <br/>
+            <label className="SignupLabel">Department</label>
+            <input className="SignupInput" type="text" data-test="department" value={this.state.department} onChange={this.handleDepartmentChange} required />
+            <br/>
+            <br/>
+            <br/>
             <input type="submit" value="Create Account" data-test="submit" />
           </form>       
     );

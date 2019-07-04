@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PreviewRequests from './PreviewRequests';
 import PreviewHistory from './PreviewHistory';
 import UpdateInventory from './UpdateInventory';
+import {Table,Button} from 'react-bootstrap';
 
 import './../App2.css';
 
@@ -12,18 +13,23 @@ class LoggedInAsAdmin extends React.Component {
       activeInfo:[],
       inactiveInfo:[],
       current:'history',
+      status:[],
       timer:0
     }
  
   this.getItems=this.getItems.bind(this);
   this.handleSwitch=this.handleSwitch.bind(this);
+  this.handleAccept=this.handleAccept.bind(this);
+  this.handleReject=this.handleReject.bind(this);
+  this.handleConfirm=this.handleConfirm.bind(this);
+  this.handleLogout=this.handleLogout.bind(this);
 
   }
 componentWillUnmount() {
   this.state.timer = null;
 }
 componentDidMount(){
-    this.timer = setInterval(()=> this.getItems(), 1000);
+    this.state.timer = setInterval(()=> this.getItems(), 1000);
   }
 getItems(){  
    fetch('http://10.0.2.235:8080/request/active', {
@@ -62,9 +68,56 @@ getItems(){
     })
    }
   }
+  handleReject(index){
+    console.log("in reject");
+    // this.props.sendFunction(index);
+     fetch('http://10.0.2.235:8080/request/reject', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.activeInfo[index])
+    })
+     var array=[...this.state.status];
+      array[index]=array[index+1];
+      this.setState({status:array});
+  }
+  handleAccept(index){
+    { var arr=[...this.state.status];
+      arr[index]='accepted';
+      this.setState({status:arr});
+      this.setState({status:arr});
+    console.log("in accept");
+    // this.props.sendFunction(index);
+     fetch('http://10.0.2.235:8080/request/accept', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.activeInfo[index])
+    })
+  }
+  }
+  handleConfirm(index){
+    
+    console.log("in confirm");
+    // this.props.sendFunction(index);
+     fetch('http://10.0.2.235:8080/request/confirm', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.activeInfo[index])
+    })
+     var array2=[...this.state.status];
+      array2[index]=array2[index+1];
+      this.setState({status:array2});
+  }
 handleLogout(e){
-  localStorage.clear();
-  this.props.sendDataToLogin('login');
+  this.props.sendDataToApp('login');
 }
 
 render() {
@@ -72,17 +125,74 @@ render() {
      <div>
         <div className="split2 left2">
           <div className="centered2">
-            <button onClick={this.handleSwitch}>switch</button>
-             <h1 className="H">Request History</h1>
-            {this.state.current==='history'?<PreviewHistory info={this.state.inactiveInfo}/>:false}
+            {this.state.current==='history'?<button onClick={this.handleSwitch}>add</button>:false}
+            {this.state.current==='form'?<button onClick={this.handleSwitch}>history</button>:false}
+             
+            {this.state.current==='history'?<><h1 className="H">Request History</h1><Table striped bordered hover>
+              <thead >
+                <tr className="TH">
+                  <th>Item Name</th>
+                  <th>Employee Name</th>
+                  <th>Employee Id</th>
+                  <th>Request Date</th>
+                  <th>Accept Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                 {this.state.inactiveInfo.map((item,index)=>{
+                
+                       return (
+                  <tr className="TH" key={item.id}>
+                    <td className="TH2" key={item.itemName}>{item.itemName}</td>
+                    <td className="TH2" key={item.empName}>{item.empName}</td>
+                    <td className="TH2" key={item.empId}>{item.empId}</td>
+                    <td className="TH2" key={item.requestDate}>{item.requestDate}</td>
+                    <td className="TH2" key={index}>{item.acceptDate}</td>           
+                </tr>
+                  )
+                  })
+               }
+              </tbody>
+            </Table></>:false}
             {this.state.current==='form'?<UpdateInventory/>:false}
           </div>
         </div>
         <div className="split2 right2">
           <div className="centered2">
             <h1 className="H">Active Requests</h1>
-            <PreviewRequests info={this.state.activeInfo} />
+           <Table striped bordered hover>
+              <thead >
+                <tr className="TH">
+                  <th>Item Name</th>
+                  <th>Employee Name</th>
+                  <th>Department</th>
+                  <th>Request Date</th>
+                  <th>Action</th>
+                  <th>Reject</th>
+                </tr>
+              </thead>
+              <tbody>
+                 {this.state.activeInfo.map((item,index)=>{
+                
+                       return (
+                  <tr className="TH" key={item.id}>
+                    <td className="TH2" key={item.itemName}>{item.itemName}</td>
+                    <td className="TH2" key={item.empName}>{item.empName}</td>
+                    <td className="TH2" key={item.dept}>{item.dept}</td>
+                    <td className="TH2" key={item.requestDate}>{item.requestDate}</td>
+                    {this.state.status[index]!=='accepted'?<td className="TH2" key={item.acceptDate}><Button className="btnn" onClick={()=>this.handleAccept(index)}>accept</Button></td>:false}
+                    {this.state.status[index]==='accepted'?<td className="TH2" key={item.acceptDate}><Button className="btnn" onClick={()=>this.handleConfirm(index)}>confirm</Button></td>:false}
+                    <td className="TH2" key={index}><Button className="btnn" onClick={()=>this.handleReject(index)}>reject</Button></td>
+                </tr>
+                  )
+                  })
+               }
+              </tbody>
+            </Table>
           </div>
+        </div>
+        <div className="logout">
+          <button onClick={this.handleLogout}>log out</button>
         </div>
       </div>
     )

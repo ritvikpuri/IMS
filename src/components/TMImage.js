@@ -7,7 +7,7 @@ class TMImage extends Component {
   render(){
   	return (
       <a>
-        <img src="https://newscdn.weigelbroadcasting.com/2fbte-1537456364-119211-blog-10848297_G.jpg" alt="Ticketmaster.png" width="100%" height="650%" />
+        <img src="https://partnerlink.progress.com/images/default-source/partner-logos/iomedia_logo_regular.png" alt="iomedia.png"  width="100%" height="100%" />
       </a>
   );
   }

@@ -18,7 +18,8 @@ class LoggedIn extends React.Component {
     }
  
     }
-    this.handleLogout = this.handleLogout.bind(this);
+
+    this.handleLogout=this.handleLogout.bind(this);
     this.handleRequest=this.handleRequest.bind(this);
     this.handleStationary = this.handleStationary.bind(this);
     this.handleDevices = this.handleDevices.bind(this);
@@ -80,6 +81,7 @@ fetch('http://10.0.2.235:8080/request', {
   body: JSON.stringify({
     empId:this.props.user.empId,
     empName:this.props.user.empName,
+    dept:this.props.user.dept,
     itemName:this.state.info[index].itemName,
     active:false
   })
@@ -87,7 +89,7 @@ fetch('http://10.0.2.235:8080/request', {
 }
 handleLogout(e){
   localStorage.clear();
-  this.props.sendDataToLogin('login');
+  this.props.sendDataToApp('login');
 }
 
 render() {

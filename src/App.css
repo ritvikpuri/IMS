@@ -149,13 +149,13 @@ input[type=text], input[type=password],select {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+.LoginSubmit {
   width: 80%;
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
-  margin-left:10%;
+  margin-left:20% !important;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -286,5 +286,33 @@ text-align:center !important;
 margin-left:0 important;
 margin-top:0 !important;
 width:80% !important;
+}
+.TH2 {
+    padding: 5px;
+    width: 15% !important;
+    margin-left: 20% !important;
+    text-align: center !important;
+}
+.LoginLabel{
+width:20% ;
+float:left;
+left:20% !important;
+margin-left:0px !important;
+
+}
+.LoginInput{
+width:40%;
+float:left;
+margin-left:0px !important;
+}
+.SignupLabel{
+width:10%;
+float:left;
+margin-left:0px;
+}
+.SignupInput{
+width:40%;
+float:left;
+margin-left:0px;
 }
 }

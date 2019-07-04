@@ -6,8 +6,8 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Employee id',
-      password: 'Password',
+      username: '',
+      password: '',
       error: ''
     };
 
@@ -84,14 +84,17 @@ class LoginPage extends Component {
               </h3>
             }
 
-            
-            <input ref="input" type="text" data-test="username"  value={this.state.username} onChange={this.handleUserChange} onClick={()=>this.setState({username:''})} required />
-
+            <label className="LoginLabel">Employee Id</label>
+            <input className="LoginInput" ref="input" type="text" data-test="username"  value={this.state.username} onChange={this.handleUserChange} required />
+           <br/>
             <br/>
-            
-            <input type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} onClick={()=>this.setState({password:''})} required />
             <br/>
-            <input type="submit" value="Log In" data-test="submit" />
+            <label className="LoginLabel">password</label>
+            <input className="LoginInput" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} required />
+            <br/>
+            <br/>
+            <br/>
+            <input className="LoginSubmit" type="submit" value="Log In" data-test="submit" />
             
           </form>   
           

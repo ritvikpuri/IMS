@@ -1,0 +1,331 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }}
+
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+header {  
+  /* This section calls the slideInFromLeft animation we defined above */
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  background: #333;
+  padding: 30px;
+}
+
+@media all and (min-width: 480px) {
+  .Login {
+    float:left;
+    display: inline-block;
+    position: left;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    background-color: #f3f3f3;
+  }
+
+    .img{
+	float:right;
+        display: inline-block;
+   	position: fixed;
+    	top: 0;
+   	bottom: 0;
+    	left: 0;
+    	right: 0;
+    	width: 200px;
+    	height: 200px;
+	transition: background-color 400ms ease;
+    	margin: auto;
+
+}
+.centered{
+    
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width:100%;
+  max-height:100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+}
+.centerImage{
+    
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width:100%;
+  max-height:100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+}
+.app{
+
+height: 968px;
+  width: 100%;
+ background: linear-gradient(to right, #F6FFFD, #E4F9F4 , #A1FAE4);
+}
+.split2 {
+  height: 90%;
+  width: 90%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 0;
+ object-fit: cover;
+  right: 5%;
+  top:5%;
+      background: linear-gradient(to right, #7DC1BC, #8FE2E2, #193A90);
+	left:5%;
+    
+}
+
+/* Control the left side */
+.left2 {
+ 
+    object-fit: cover;
+  left: 5%;
+  top:5%;
+  background-color: white;
+}
+
+/* Control the right side */
+.right2 {
+ 
+    object-fit: cover;
+  right: 5%;
+  top:5%;
+      background: linear-gradient(to right, #7DC1BC, #8FE2E2, #193A90);
+    
+    
+}
+
+input[type=text], input[type=password],select {
+  width: 80%;
+  font-size:30px;
+  padding: 0;
+  background:transparent;
+  margin-left:10%;
+  display: inline-block;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 80%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  margin-left:10%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.InvtInput{
+  width: 30% !important;
+  font-size:20px;
+  padding: 0;
+  background:transparent;
+  margin-left:0% !important;
+  display: inline-block;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+}
+.InvtLabel{
+         width: 20%;
+    font-size: 20px;
+    padding: 0;
+    background: transparent;
+    margin-left: 22%;
+    display: inline-block;
+    border: 0;
+    border-radius: 0;
+    /* border-bottom: 1px solid black; */
+    box-sizing: border-box;
+}
+.InvtDropdown{
+         width: 50%;
+    font-size: 20px;
+    padding: 0;
+    background: transparent !important;
+    margin-left: 22%;
+	border-bottom: 1px solid black !important;
+
+margin-top: 3%;
+    display: inline-block;
+    border: 0;
+    border-radius: 0;
+    /* border-bottom: 1px solid black; */
+    box-sizing: border-box;
+}
+
+.btn {
+            color: white;
+		width:50%;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+ background: rgb(66, 184, 221); /* this is a light blue */
+	margin-left:24% !important;
+	margin-top:40px;
+        }
+
+.InvtBtn {
+            color: white;
+		width:10%;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+ background: rgb(66, 184, 221); /* this is a light blue */
+	margin-left:42% !important;
+	margin-top:50px;
+        }
+.prbtn {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+ background: rgb(66, 184, 221); /* this is a light blue */
+	margin-top:60px !important;
+margin-left:42% !important;
+        }
+
+.logout{
+     line-height: 12px;
+     width: 30px;
+     font-size: 8pt;
+     font-family: tahoma;
+     margin-top: 1px;
+     margin-right: 2px;
+     position:absolute;
+     top:0;
+     right:0;
+ }
+.i1 {
+
+}
+.p1{
+  font-size:30px;
+  width: 100%;
+right:200px;
+  padding: 0;
+  margin:0;
+  background:transparent;
+  
+  display: inline-block;
+  border: 4px;
+}
+.new{
+width: 90%;
+  font-size:20px;
+  padding: 0;
+  margin: 8px 0;
+  background:transparent;
+  display: inline-block;
+  border-radius: 0;
+  border: 1px solid black;
+  box-sizing: border-box;
+	margin-left:20px !important;
+
+
+
+}
+.new1{
+float:left;
+left:20px%;
+width:40%;
+margin-left:20px !important;
+}
+.delbtn{
+left:10px;
+float:right;
+}
+.new2{
+float:left;
+background-color:white;
+border: 1px solid black;
+width: 40%;
+}
+.delbtn{
+left:10px;
+float:right;
+}
+
+.10{
+  margin: auto;
+  width: 60%;
+  border: 3px solid black;
+  padding: 10px;
+}
+.11{
+  margin: auto;
+  width: 60%;
+  border: 3px solid  black;
+  padding: 10px;
+}
+.btn1{
+  display: inline-block;
+	 margin-left:50px;
+	width:20% !important;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+ background: rgb(66, 184, 221); /* this is a light blue */
+        }
+
+.H{
+margin-left:20px;
+font-size:50px;
+}
+.PP{
+margin-left:20px;
+}
+.L{
+margin-left:10% !important;
+font-size:20px;
+}
+}

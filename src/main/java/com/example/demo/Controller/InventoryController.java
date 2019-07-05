@@ -49,11 +49,11 @@ public class InventoryController {
 				newInventoryItem.setItemName(item.getItemName());
 				newInventoryItem.setType(item.getType());
 				newInventoryItem.setQty(currentQty+inventory.getQty());
-				inventoryService.save(newInventoryItem);
+				inventoryService.saveAndFlush(newInventoryItem);
 			}
 		}
 		if(!check) {
-			inventoryService.save(inventory);
+			inventoryService.saveAndFlush(inventory);
 		}
 	}
 }

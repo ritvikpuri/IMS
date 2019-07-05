@@ -11,11 +11,13 @@ public interface InventoryService {
 
 	List<Inventory> findByType(String type);
 	
-	void save(Inventory inventory);
+	void saveAndFlush(Inventory inventory);
 	
 	List<Inventory> findAll();
 	
 	void deleteByItemName(String itemName);
 	
 	void deleteById(long id);
+
+	Inventory findByItemName(String name);
 }

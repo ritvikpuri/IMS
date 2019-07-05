@@ -16,8 +16,8 @@ public class RequestServiceImpl implements RequestService{
 	RequestRepository requestRepo;
 
 	@Override
-	public void save(Request request) {
-		requestRepo.save(request);
+	public void saveAndFlush(Request request) {
+		requestRepo.saveAndFlush(request);
 	}
 
 	@Override
@@ -28,6 +28,11 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public void deleteById(long id) {
 		requestRepo.deleteById(id);
+	}
+
+	@Override
+	public Request findByItemName(String name) {
+		return requestRepo.findByItemName(name);
 	}
 
 }

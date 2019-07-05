@@ -9,9 +9,11 @@ import com.example.demo.Classes.Request;
 @Service
 public interface RequestService {
 
-	void save(Request request);
+	void saveAndFlush(Request request);
 	
 	List<Request> findByActive(boolean active);
 	
 	void deleteById(long id);
+	
+	Request findByItemName(String name);
 }

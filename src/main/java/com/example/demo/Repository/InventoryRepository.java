@@ -13,4 +13,6 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long>{
 	List<Inventory> findByType(String type);
 	
 	void deleteByItemName(String itemName);
+	
+	Inventory findByItemName(String name);
 }

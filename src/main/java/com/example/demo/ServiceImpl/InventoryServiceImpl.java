@@ -21,8 +21,8 @@ public class InventoryServiceImpl implements InventoryService{
 	}
 
 	@Override
-	public void save(Inventory inventory) {
-		inventoryRepo.save(inventory);
+	public void saveAndFlush(Inventory inventory) {
+		inventoryRepo.saveAndFlush(inventory);
 	}
 
 	@Override
@@ -38,6 +38,13 @@ public class InventoryServiceImpl implements InventoryService{
 	@Override
 	public void deleteById(long id) {
 		inventoryRepo.deleteById(id);
+	}
+
+
+
+	@Override
+	public Inventory findByItemName(String name) {
+		return inventoryRepo.findByItemName(name);
 	}
 
 }

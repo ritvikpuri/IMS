@@ -34,7 +34,16 @@ public class Request {
 	private String acceptDate;
 	
 	@Column
+	private String estimatedReturnDate;
+	
+	@Column
+	private String returnDate;
+	
+	@Column
 	private boolean active;
+	
+	@Column
+	private Integer duration;
 
 	public long getId() {
 		return id;
@@ -99,4 +108,30 @@ public class Request {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+
+	public String getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(String returnDate) {
+		this.returnDate = returnDate;
+	}
+
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	public String getEstimatedReturnDate() {
+		return estimatedReturnDate;
+	}
+
+	public void setEstimatedReturnDate(String estimatedReturnDate) {
+		this.estimatedReturnDate = estimatedReturnDate;
+	}
+
+	
 }

@@ -13,4 +13,6 @@ public interface RequestRepository extends JpaRepository<Request, Long>{
 	List<Request> findByActive(boolean active);
 	
 	void deleteById(long id);
+	
+	Request findByItemName(String name);
 }

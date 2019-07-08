@@ -102,7 +102,7 @@ header {
 }
 .app{
 
-height: 968px;
+height: 948px !important;
   width: 100%;
  background: linear-gradient(to right, #F6FFFD, #E4F9F4 , #A1FAE4);
 }
@@ -291,6 +291,12 @@ width:80% !important;
     padding: 5px;
     width: 15% !important;
     margin-left: 20% !important;
+    text-align: center !important;
+}
+.TH3 {
+    padding: 5px;
+ 
+    margin-left: 2% !important;
     text-align: center !important;
 }
 .LoginLabel{

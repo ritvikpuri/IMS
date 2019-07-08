@@ -3,6 +3,10 @@ import PreviewRequests from './PreviewRequests';
 import PreviewHistory from './PreviewHistory';
 import UpdateInventory from './UpdateInventory';
 import {Table,Button} from 'react-bootstrap';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 
 import './../App2.css';
 
@@ -12,13 +16,12 @@ class LoggedInAsAdmin extends React.Component {
   this.state = {
       activeInfo:[],
       inactiveInfo:[],
-      current:'history',
+      current:'active',
       status:[],
       timer:0
     }
  
   this.getItems=this.getItems.bind(this);
-  this.handleSwitch=this.handleSwitch.bind(this);
   this.handleAccept=this.handleAccept.bind(this);
   this.handleReject=this.handleReject.bind(this);
   this.handleConfirm=this.handleConfirm.bind(this);
@@ -56,18 +59,7 @@ getItems(){
     .catch(error => console.log(error));
       this.setState({curState:'fin'});
   }
-  handleSwitch(){
-   if(this.state.current==='history'){
-     this.setState({
-      current:'form'
-    })
-   }
-   else{
-     this.setState({
-      current:'history'
-    })
-   }
-  }
+ 
   handleReject(index){
     console.log("in reject");
     // this.props.sendFunction(index);
@@ -123,11 +115,16 @@ handleLogout(e){
 render() {
     return (
      <div>
-        <div className="split2 left2">
+        <div className="split2">
           <div className="centered2">
-            {this.state.current==='history'?<button onClick={this.handleSwitch}>add</button>:false}
-            {this.state.current==='form'?<button onClick={this.handleSwitch}>history</button>:false}
-             
+         
+            <Paper square>
+              <Tabs value={this.state.current} indicatorColor="primary" textColor="primary">
+                <Tab value='active' label="Active" onClick={()=>this.setState({current:'active'})} />
+                <Tab value='history' label="History" onClick={()=>this.setState({current:'history'})} />
+                <Tab value='add' label="Add" onClick={()=>this.setState({current:'add'})}/>
+              </Tabs>
+            </Paper>
             {this.state.current==='history'?<><h1 className="H">Request History</h1><Table striped bordered hover>
               <thead >
                 <tr className="TH">
@@ -154,17 +151,14 @@ render() {
                }
               </tbody>
             </Table></>:false}
-            {this.state.current==='form'?<UpdateInventory/>:false}
-          </div>
-        </div>
-        <div className="split2 right2">
-          <div className="centered2">
-            <h1 className="H">Active Requests</h1>
+            {this.state.current==='add'?<UpdateInventory/>:false}
+            {this.state.current==='active'?<><h1 className="H">Active Requests</h1>
            <Table striped bordered hover>
               <thead >
                 <tr className="TH">
                   <th>Item Name</th>
                   <th>Employee Name</th>
+                  <th>Employee Id</th>
                   <th>Department</th>
                   <th>Request Date</th>
                   <th>Action</th>
@@ -178,6 +172,7 @@ render() {
                   <tr className="TH" key={item.id}>
                     <td className="TH2" key={item.itemName}>{item.itemName}</td>
                     <td className="TH2" key={item.empName}>{item.empName}</td>
+                    <td className="TH2" key={item.empId}>{item.empId}</td>
                     <td className="TH2" key={item.dept}>{item.dept}</td>
                     <td className="TH2" key={item.requestDate}>{item.requestDate}</td>
                     {this.state.status[index]!=='accepted'?<td className="TH2" key={item.acceptDate}><Button className="btnn" onClick={()=>this.handleAccept(index)}>accept</Button></td>:false}
@@ -188,9 +183,10 @@ render() {
                   })
                }
               </tbody>
-            </Table>
+            </Table></>:false}
           </div>
         </div>
+       
         <div className="logout">
           <button onClick={this.handleLogout}>log out</button>
         </div>
@@ -201,4 +197,8 @@ render() {
 export default LoggedInAsAdmin
 
 
- 
+  // <button onClick={this.handleActive}>active</button>
+            // <button onClick={this.handleHistory}>history</button>
+            // <button onClick={this.handleAdd}>add</button>
+            //  
+            // <DisabledTabs sendDataToAdmin={this.handleChange}/>

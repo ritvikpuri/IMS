@@ -68,7 +68,7 @@ addItem(e){
           itemName:this.state.itemName,
           qty:this.state.qty,
           type:this.state.type,
-          sno:this.state.sno
+          serialNumber:this.state.sno
         })
       })}
 
@@ -93,7 +93,7 @@ render() {
            <option value = "Stationary">Stationary</option>
          </select>
          <br/>
-         {this.state.type=='Devices?'<> <p className="InvtLabel">serial number</p>
+         {this.state.type==='Devices'?<><p className="InvtLabel">serial number</p>
           <input className="InvtInput" type='text' value={this.state.sno} onChange={this.handleSnoChange} required/>
           </>:false}
          <br/>

@@ -25,7 +25,10 @@ handleNameChange(e){
 
 handleTypeChange(e){
   this.setState({
-    type:e.target.value
+    type:e.target.value,
+    itemName:'',
+    qty:0,
+    sno:''
   })
 }
 
@@ -79,20 +82,21 @@ render() {
     return (
      <div>
        <form onSubmit={this.addItem}>    
-          <p className="InvtLabel">item name</p>
-          <input className="InvtInput" type='text' value={this.state.itemName} onChange={this.handleNameChange} required />
-          <br/>
-          <p className="InvtLabel">quantity to add</p>
-          <input className="InvtInput" type='text' value={this.state.qty} onChange={this.handleQtyChange} required/>
-          <br/>
-
-         <select className="InvtDropdown" id = "InvtLabel" value={this.state.type} onChange={this.handleTypeChange}>
+          <select className="InvtDropdown" id = "InvtLabel" value={this.state.type} onChange={this.handleTypeChange}>
            <option value = "lol" >select type</option>
            <option value = "Devices" >Devices</option>
            <option value = "Medicine" >Medicine</option>
            <option value = "Stationary">Stationary</option>
          </select>
          <br/>
+          <p className="InvtLabel">item name</p>
+          <input className="InvtInput" type='text' value={this.state.itemName} onChange={this.handleNameChange} required />
+          <br/>
+          {this.state.type!=='Devices'?<><p className="InvtLabel">quantity to add</p>
+                    <input className="InvtInput" type='text' value={this.state.qty} onChange={this.handleQtyChange} required/>
+                    <br/></>:false}
+
+         
          {this.state.type==='Devices'?<><p className="InvtLabel">serial number</p>
           <input className="InvtInput" type='text' value={this.state.sno} onChange={this.handleSnoChange} required/>
           </>:false}

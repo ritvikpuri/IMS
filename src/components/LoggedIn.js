@@ -10,7 +10,7 @@ class LoggedIn extends React.Component {
   constructor(props){
   super(props);   
   this.state = {
-    curState:'init',
+    curState:'',
     status:[''],
     info:[],
     duration:[''],
@@ -38,6 +38,21 @@ class LoggedIn extends React.Component {
     this.setState({
       duration:arr
     })
+  }
+  componentDidMount(){
+     this.setState({
+      current:'devices'
+    })
+   fetch('http://10.0.2.235:8080/inventory/devices', {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      this.setState({info:json});
+    })
+    .catch(error => console.log(error));
+      this.setState({curState:'fin'});
   }
   handleStationary(){
     this.setState({
@@ -100,8 +115,10 @@ handleRequest(index){
     empName:this.props.user.empName,
     dept:this.props.user.dept,
     itemName:this.state.info[index].itemName,
+    type:this.state.current,
     active:false,
-    duration:this.state.duration[index]
+    duration:this.state.duration[index],
+    pending:false
   })
 })
   if(this.state.current==='devices'){

@@ -30,12 +30,14 @@ public class UserController {
 	}
 
 	@PostMapping("/signup")
-	public String signUp(@RequestBody User user) {
+	public boolean signUp(@RequestBody User user) {
 		try {
 			userService.save(user);
-			return "valid";
+			return true;//"Signed up successfully. Please try logging in.";
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.CONFLICT, "Email/id is already in use", e);
+			return false;
+			
+			//throw new ResponseStatusException(HttpStatus.CONFLICT, "Email/id is already in use", e);
 		}
 	}
 

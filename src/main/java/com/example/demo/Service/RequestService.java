@@ -16,4 +16,8 @@ public interface RequestService {
 	void deleteById(long id);
 	
 	Request findByItemName(String name);
+	
+	int findQtyByItemName(String name);
+	
+	List<Request> findByPending(Boolean pending);
 }

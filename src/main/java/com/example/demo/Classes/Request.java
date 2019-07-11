@@ -43,7 +43,27 @@ public class Request {
 	private boolean active;
 	
 	@Column
+	private Boolean pending=false;
+
+	@Column
 	private Integer duration;
+	
+	@Column
+	private Integer currentQty;
+	
+	@Column
+	private String type;
+	
+	@Column
+	private String serialNumber;
+
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
 
 	public long getId() {
 		return id;
@@ -131,6 +151,30 @@ public class Request {
 
 	public void setEstimatedReturnDate(String estimatedReturnDate) {
 		this.estimatedReturnDate = estimatedReturnDate;
+	}
+
+	public Integer getCurrentQty() {
+		return currentQty;
+	}
+
+	public void setCurrentQty(Integer currentQty) {
+		this.currentQty = currentQty;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Boolean isPending() {
+		return pending;
+	}
+
+	public void setPending(Boolean pending) {
+		this.pending = pending;
 	}
 
 	

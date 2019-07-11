@@ -15,4 +15,8 @@ public interface RequestRepository extends JpaRepository<Request, Long>{
 	void deleteById(long id);
 	
 	Request findByItemName(String name);
+	
+	int findQtyByItemName(String name);
+	
+	List<Request> findByPending(Boolean pending);
 }

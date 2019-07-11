@@ -43,12 +43,9 @@ fetch('http://10.0.2.235:8080/signup', {
         dept:this.state.department
       })
     }).then((result)=>{
-      console.log(" the result is ",result);
-      result.json().then((response)=>{
-        console.log(" the final response is ",response);
-         if(response){
-            
-    }
+      result.json().then((json)=>{
+        if(json)this.setState({error:'signup successful! go to login'});
+        else this.setState({error:'Employee code already exists'});    
       })
     })
   }
@@ -87,13 +84,6 @@ fetch('http://10.0.2.235:8080/signup', {
     return (
      
           <form onSubmit={this.handleSubmit}>
-            {
-              this.state.error &&
-              <h3 data-test="error" onClick={this.dismissError}>
-                <button onClick={this.dismissError}>✖</button>
-                {this.state.error}
-              </h3>
-            }
             <label className="SignupLabel">Email</label>
             <input className="SignupInput" type="text" data-test="email" value={this.state.email} onChange={this.handleEmailChange} required />
             <br/>
@@ -120,6 +110,10 @@ fetch('http://10.0.2.235:8080/signup', {
             <br/>
             <br/>
             <input type="submit" value="Create Account" data-test="submit" />
+            <br/>
+            <p>{this.state.error}</p>
+            <br/>
+            <br/>
           </form>       
     );
   }

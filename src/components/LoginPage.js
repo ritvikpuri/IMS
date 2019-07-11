@@ -21,22 +21,9 @@ class LoginPage extends Component {
     this.setState({ error: '' });
   }
 
-  handleSubmit(evt) {
-
-  
-    
+  handleSubmit(evt) {    
     evt.preventDefault();
-
-    if (!this.state.username) {
-      return this.setState({ error: 'Username is required' });
-    }
-
-    if (!this.state.password) {
-      return this.setState({ error: 'Password is required' });
-    }
-       console.log("above t");
-
- fetch('http://10.0.2.235:8080/login', {
+    fetch('http://10.0.2.235:8080/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -103,6 +103,14 @@ handleRejectAfterAccept(index){
 }
 
 async handleAccept(index){
+  var tempActiveInfo=[...this.state.activeInfo];
+  tempActiveInfo.forEach(function(tempInfo){
+  if(tempInfo.itemName===tempActiveInfo[index].itemName)
+    tempInfo.currentQty--;
+  })
+  console.log(this.state.activeInfo[index.currentQty])
+  this.setState({activeInfo:tempActiveInfo});
+   console.log(this.state.activeInfo[index.currentQty])
   if(this.state.activeInfo[index].type!=='devices'){
     var arr=[...this.state.status];
     arr[index]='accepted';
@@ -138,7 +146,6 @@ async handleAccept(index){
     this.setState({
       serialNumbers:sno
     })
-    console.log(response);
   }
 }
 

@@ -60,34 +60,71 @@ class LoginPage extends Component {
   render() {
     
     return (
-     
-          <form onSubmit={this.handleSubmit}>
-          
-            {
-              this.state.error &&
-              <h3 data-test="error" onClick={this.dismissError}>
-                <button onClick={this.dismissError}>✖</button>
-                {this.state.error}
-              </h3>
-            }
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3"></div>
+            <div className="col-md-6 col-xs-12">
+              <div className="jumbotron">
+                <h1 className="text-center">Login Page</h1>
+                <p className="lead" align="center">
+                  Come fly with us <i className="fa fa-plane"></i>
+                </p>
+                <br/>
+                  <form onSubmit={this.handleSubmit}>
 
-            <label className="LoginLabel">Employee Id</label>
-            <input className="LoginInput" ref="input" type="text" data-test="username"  value={this.state.username} onChange={this.handleUserChange} required />
-           <br/>
-            <br/>
-            <br/>
-            <label className="LoginLabel">password</label>
-            <input className="LoginInput" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} required />
-            <br/>
-            <br/>
-            <br/>
-            <input className="LoginSubmit" type="submit" value="Log In" data-test="submit" />
-            
-          </form>   
-          
-          
-    );
+                    <div className="form-group ${error != null ? 'has-error' : ''}">
+                      <input name="username" type="text" placeholder="Username" autoFocus="true" value={this.state.username} onChange={this.handleUserChange} required/>
+                      <br/>
+                        <input name="password" type="password"
+                               placeholder="Password" value={this.state.password} onChange={this.handlePassChange} required/>
+                        <input
+                          type="hidden" name="${_csrf.parameterName}"
+                          value="${_csrf.token}"/>
+                        <br/>
+                          <div align="center">
+                            <button type="submit" className="btn btn-outline-info">Login</button>
+                            <button type="reset" className="btn btn-outline-dark">Close</button>
+                          </div>
+                          <br/>
+                            <div>
+                              <p>New flyer?</p>
+                            </div>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  );
   }
 }
 
 export default LoginPage;
+
+
+{/*<form onSubmit={this.handleSubmit}>*/}
+
+{/*  {*/}
+{/*    this.state.error &&*/}
+{/*    <h3 data-test="error" onClick={this.dismissError}>*/}
+{/*      <button onClick={this.dismissError}>✖</button>*/}
+{/*      {this.state.error}*/}
+{/*    </h3>*/}
+{/*  }*/}
+
+{/*  <label className="LoginLabel">Employee Id</label>*/}
+{/*  <input className="LoginInput" ref="input" type="text" data-test="username"  value={this.state.username} onChange={this.handleUserChange} required />*/}
+{/*  <br/>*/}
+{/*  <br/>*/}
+{/*  <br/>*/}
+{/*  <label className="LoginLabel">password</label>*/}
+{/*  <input className="LoginInput" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} required />*/}
+{/*  <br/>*/}
+{/*  <br/>*/}
+{/*  <br/>*/}
+{/*  <input className="LoginSubmit" type="submit" value="Log In" data-test="submit" />*/}
+
+{/*</form>*/}
+{/*          //*/}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Preview from './Preview';
 import {Table,Button} from 'react-bootstrap';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';

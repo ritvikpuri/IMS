@@ -1,29 +1,51 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Jumbotron, Container, Nav, Button, NavDropdown} from 'react-bootstrap';
+import {Jumbotron, Container, Nav, Navbar, NavDropdown, FormControl, Button, Form, ListGroup} from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            current:''
+        }
+        this.handleClick=this.handleClick.bind(this);
+    }
+
+    handleClick(){
+        console.log('clicked');
+    }
+
+
     render() {
         return (
             <Container>
                 <Jumbotron>
                     <div class="form-group">
+                        <Navbar bg="primary" variant="dark">
+                            <Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand>
+                            <Nav className="mr-auto"/>
+                            <Form inline>
+                                <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
+                                <Button variant="outline-light">Search</Button>
+                            </Form>
+                        </Navbar>
+                        <br/>
                         <div class="form-group col-md-3">
-                            <Nav defaultActiveKey="/home" className="flex-column">
-                                <Nav.Link href="/home">Admin Dashboard</Nav.Link>
-                                <NavDropdown title="Requests" id="request-dropdown">
-                                    <NavDropdown.Item eventKey="link">New</NavDropdown.Item>
-                                    <NavDropdown.Item eventKey="link">Pending</NavDropdown.Item>
-                                    <NavDropdown.Item eventKey="link">History</NavDropdown.Item>
-                                </NavDropdown>
-                                <NavDropdown title="Inventory" id="inventory-dropdown">
-                                    <NavDropdown.Item eventKey="link">Add Item</NavDropdown.Item>
-                                    <NavDropdown.Item eventKey="link">Inventory List</NavDropdown.Item>
-                                </NavDropdown>
-                                <Nav.Link eventKey="link-2">User</Nav.Link>
-                            </Nav>
+                            <ListGroup>
+                                <ListGroup.Item variant="info">Requests</ListGroup.Item>
+                                <ListGroup.Item action onClick={this.handleClick}>New</ListGroup.Item>
+                                <ListGroup.Item action href="link2">Pending</ListGroup.Item>
+                                <ListGroup.Item action href="link3">History</ListGroup.Item>
+                                <br/>
+                                <ListGroup.Item variant="info">Inventory</ListGroup.Item>
+                                <ListGroup.Item action href="link4">Add Item</ListGroup.Item>
+                                <ListGroup.Item action href="link5">Inventory List</ListGroup.Item>
+                                <br/>
+                                <ListGroup.Item variant="info">Users</ListGroup.Item>
+                                <ListGroup.Item action href="link6">User List</ListGroup.Item>
+                            </ListGroup>
                         </div>
                     </div>
                 </Jumbotron>

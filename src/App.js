@@ -206,10 +206,10 @@ export default class App extends Component {
                         <Button variant="outline-light">Search</Button>
                     </Form>
                 </Navbar>
-                <Jumbotron>
+                <Jumbotron fluid>
                     <div class="form-group">
                         <div class="form-row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <ListGroup>
                                     <ListGroup.Item variant="info">Requests</ListGroup.Item>
                                     <ListGroup.Item action
@@ -227,7 +227,7 @@ export default class App extends Component {
                                     <ListGroup.Item action href="link6">User List</ListGroup.Item>
                                 </ListGroup>
                             </div>
-                            <div class="form-group col-md-9">
+                            <div class="form-group col-md-10">
                                 {this.state.current === 'add' ? <UpdateInventory/> : false}
                                 {this.state.current === 'history' ? <><h1 className="H">Request History</h1><Table
                                     striped
@@ -272,7 +272,7 @@ export default class App extends Component {
                                             <th>Department</th>
                                             <th>Request Date</th>
                                             <th>Action</th>
-                                            <th>Reject</th>
+                                            <th>Unavailable</th>
                                         </tr>
                                         </thead>
                                         <tbody>

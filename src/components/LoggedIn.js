@@ -141,8 +141,12 @@ class LoggedIn extends React.Component {
         return (
             <Container>
                 <Jumbotron>
-                    <h3 className="display-4" align="center">Welcome to IMS</h3>
-                    <p className="lead" align="center">What would you like to request?</p>
+                        <h3 className="display-4" align="center">Welcome to IMS</h3>
+                        <p className="lead" align="center">What would you like to request?</p>
+                        <div align="right">
+                        <Button variant="outline-warning" onClick={this.handleLogout} align="right">Log Out</Button>
+                        </div>
+                    <br/>
                     <div>
                         <Paper square>
                             <Tabs value={this.state.current} indicatorColor="primary" textColor="primary">
@@ -191,12 +195,14 @@ class LoggedIn extends React.Component {
                                     <tr className="TH3" key={item.id}>
                                         <td className="TH3" key={item.itemName}>{item.itemName}</td>
                                         <td className="TH3">{this.state.status[index] !== 'requested' ?
-                                            <input type="number" min="1" max="10" required={true} value={this.state.duration[index]}
+                                            <input type="number" min="1" max="10" required={true}
+                                                   value={this.state.duration[index]}
                                                    onChange={(e) => this.handleDuration(e, index)}
-                                                   /> : false}</td>
+                                            /> : false}</td>
                                         <td className="TH3" key={index}>
-                                            {this.state.status[index] !== 'requested' ? <Button variant="outline-primary"
-                                                                                                onClick={() => this.handleRequest(index)}>Request</Button> : false}
+                                            {this.state.status[index] !== 'requested' ?
+                                                <Button variant="outline-primary"
+                                                        onClick={() => this.handleRequest(index)}>Request</Button> : false}
                                             {this.state.status[index] === 'requested' ?
                                                 <p className="TH2">Requested</p> : false}
                                         </td>
@@ -206,9 +212,6 @@ class LoggedIn extends React.Component {
                             }
                             </tbody>
                         </Table></> : false}
-                        <div className="logout">
-                            <Button variant="outline-warning" onClick={this.handleLogout}>Log Out</Button>
-                        </div>
                     </div>
                 </Jumbotron>
             </Container>

@@ -27,7 +27,9 @@ class App extends Component {
      if(val.admin){
       this.setState({
       current:'Admin'
-    })}
+    })
+     this.setState({user:val})
+     }
      else{
       this.setState({
       current:'loggedIn'

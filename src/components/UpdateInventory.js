@@ -104,6 +104,7 @@ class UpdateInventory extends React.Component {
                             <Form.Group as={Col} id="InvtLabel" value={this.state.type}
                                         onChange={this.handleTypeChange}>
                                 <Form.Control as="select">
+                                    <option value=" ">Select Type</option>
                                     <option value="Medicine">Medicine</option>
                                     <option value="Stationary">Stationary</option>
                                     <option value="Devices">Devices</option>
@@ -144,7 +145,7 @@ class UpdateInventory extends React.Component {
                     <br/>
                     <br/>
                     {/*<Button variant="success-outline" type='submit' value='submit' data-test="submit">submit</Button>*/}
-                    <Button variant="outline-success" type="submit" value="Submit">Hello</Button>
+                    <Button variant="outline-success" type="submit" value="Submit">Add Item</Button>
                     <br/>
                 </form>
             </div>

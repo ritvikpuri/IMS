@@ -243,7 +243,7 @@ export default class App extends Component {
                             </div>
                             <div class="form-group col-md-10">
                                 {this.state.current === 'add' ? <UpdateInventory/> : false}
-                                {this.state.current === 'history' ? <><h1 className="H">Request History</h1><Table
+                                {this.state.current === 'history' ? <><h1 align="center">Request History</h1><Table
                                     striped
                                     bordered
                                     hover>
@@ -275,8 +275,8 @@ export default class App extends Component {
                                     </tbody>
                                 </Table></> : false}
 
-                                {this.state.current === 'active' ? <><h1 className="H">Active Requests</h1>
-                                    <Table striped bordered hover>
+                                {this.state.current === 'active' ? <><h1 align="center">Active Requests</h1>
+                                    <Table hover >
                                         <thead>
                                         <tr className="TH">
                                             <th>Item Name</th>
@@ -285,7 +285,7 @@ export default class App extends Component {
                                             <th>Department</th>
                                             <th>Request Date</th>
                                             <th>Action</th>
-                                            <th>serial number to assign</th>
+                                            <th>Serial Number Assigned</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -300,16 +300,17 @@ export default class App extends Component {
                                                     <td className="TH2" key={item.requestDate}>{item.requestDate}</td>
                                                     {this.state.status[index] !== 'accepted' ?
                                                         <td className="TH2" key={item.serialNumber}><Button
-                                                            className="btnn"
+                                                            className="btnn" variant="primary"
                                                             onClick={() => this.handleAccept(index)}><i
                                                             className="fa fa-check" aria-hidden="true"></i></Button>
-                                                            <Button variant="danger"  className="btnn"
+                                                            <Button variant="danger" className="btnn"
                                                                     onClick={() => this.handleReject(index)}><i
                                                                 className="fa fa-trash" aria-hidden="true"></i></Button>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
-                                                        <td className="TH2" key={item.duration}><Button className="btnn"
-                                                                                                        onClick={() => this.handleConfirm(index)}><i
+                                                        <td className="TH2" key={item.duration}><Button
+                                                            variant="success"
+                                                            onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
                                                                     onClick={() => this.handleRejectAfterAccept(index)}><i
@@ -317,7 +318,7 @@ export default class App extends Component {
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type !== 'devices' ?
                                                         <td className="TH2" key={item.estimatedReturnDate}><Button
-                                                            className="btnn"
+                                                            variant="success"
                                                             onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
@@ -342,7 +343,7 @@ export default class App extends Component {
                                         </tbody>
                                     </Table></> : false}
 
-                                {this.state.current === 'pending' ? <><h1 className="H">Pending Requests</h1><Table
+                                {this.state.current === 'pending' ? <><h1 align="center">Pending Requests</h1><Table
                                     striped
                                     bordered
                                     hover>
@@ -370,9 +371,9 @@ export default class App extends Component {
                                                 <td className="TH2"
                                                     key={item.estimatedReturnDate}>{item.estimatedReturnDate}</td>
                                                 <td className="TH2" key={item.index}>
-                                                    <button className="btnn"
+                                                    <Button variant="outline-info"
                                                             onClick={() => this.handleReturn(index)}>Returned
-                                                    </button>
+                                                    </Button>
                                                 </td>
                                             </tr>
                                         )
@@ -380,9 +381,9 @@ export default class App extends Component {
                                     }
                                     </tbody>
                                 </Table></> : false}
-                                {this.state.current === 'inventory' ? <><h1 className="H">Inventory</h1><Table striped
-                                                                                                               bordered
-                                                                                                               hover>
+                                {this.state.current === 'inventory' ? <><h1 align="center">Inventory</h1><Table striped
+                                                                                                                bordered
+                                                                                                                hover>
                                     <thead>
                                     <tr className="TH">
                                         <th>Item Name</th>
@@ -402,9 +403,9 @@ export default class App extends Component {
                                     }
                                     </tbody>
                                 </Table></> : false}
-                                {this.state.current === 'users' ? <><h1 className="H">Users List</h1><Table striped
-                                                                                                            bordered
-                                                                                                            hover>
+                                {this.state.current === 'users' ? <><h1 align="center">Users List</h1><Table striped
+                                                                                                             bordered
+                                                                                                             hover>
                                     <thead>
                                     <tr className="TH">
                                         <th>Employee Name</th>
@@ -427,9 +428,19 @@ export default class App extends Component {
                                     </tbody>
                                     n
                                 </Table></> : false}
-                                {this.state.current === 'dash' ? <><h1 className="H">Hello Maria</h1>
+                                {this.state.current === 'dash' ? <>
+                                    {/*<h1 className="H">Hello Maria</h1>
                                     <h4>Active Requests: {this.state.activeInfo.length}</h4>
-                                    <h4>Pending Requests: {this.state.pendingInfo.length}</h4>
+                                    <h4>Pending Requests: {this.state.pendingInfo.length}</h4>*/}
+                                    <br/>
+                                    <div>
+                                        <h3>Welcome {this.props.user.empName},</h3>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group cold-md-3" align={'left'}>
+                                        <h5>Active Requests: {this.state.activeInfo.length}</h5>
+                                        <h5>Pending Requests: {this.state.pendingInfo.length}</h5>
+                                    </div>
                                 </> : false}
                             </div>
                         </div>

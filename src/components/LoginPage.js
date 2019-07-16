@@ -71,9 +71,9 @@ class LoginPage extends Component {
                     <div className="col-md-3"></div>
                     <div className="col-md-6 col-xs-12">
                         <div className="jumbotron">
-                            <h1 className="text-center">Login Page</h1>
+                            <h1 className="text-center">IMS-IOMEDIA</h1>
                             <p className="lead" align="center">
-                                Come INVENTORY with us <i className="fa fa-plane"></i>
+                                Login Page
                             </p>
                             <br/><br/>
                             <form onSubmit={this.handleSubmit}>

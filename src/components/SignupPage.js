@@ -97,7 +97,7 @@ class SignupPage extends Component {
                         <div className="jumbotron">
                             <h1 className="text-center">Sign Up for IMS</h1>
                             <p className="lead" align="center">
-                                Create your account to start requesting<i className="fa fa-plane"></i>
+                                Create your account to start requesting
                             </p>
                             <br/>
                             <Form onSubmit={this.handleSubmit}>

@@ -29,7 +29,7 @@ export default class App extends Component {
     }
 
     componentWillUnmount() {
-       this.setState({timer:null})
+        this.setState({timer: null})
     }
 
     componentDidMount() {
@@ -161,7 +161,7 @@ export default class App extends Component {
                 this.setState({
                     serialNumbers: sno
                 })
-            } catch (err){
+            } catch (err) {
                 response = err;
                 var sno = [...this.state.serialNumbers];
                 sno[index] = 'UNAVAILABLE';
@@ -218,7 +218,7 @@ export default class App extends Component {
     }
 
     handleLogout(e) {
-        this.setState({timer:null});
+        this.setState({timer: null});
         this.props.sendDataToApp('login');
     }
 
@@ -275,8 +275,8 @@ export default class App extends Component {
                                         <th>Serial Number</th>
                                         <th>Employee Name</th>
                                         <th>Employee Id</th>
-                                        <th>Request Date</th>
                                         <th>Accept Date</th>
+                                        <th>Return Date</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -284,12 +284,12 @@ export default class App extends Component {
 
                                         return (
                                             <tr className="TH" key={item.id}>
-                                                <td className="TH2" key={item.itemName}>{item.itemName}</td>
-                                                <td className="TH2" key={item.serialNumber}>{item.serialNumber}</td>
-                                                <td className="TH2" key={item.empName}>{item.empName}</td>
-                                                <td className="TH2" key={item.empId}>{item.empId}</td>
-                                                <td className="TH2" key={item.requestDate}>{item.requestDate}</td>
-                                                <td className="TH2" key={index}>{item.acceptDate}</td>
+                                                <td className="TH2" key="1">{item.itemName}</td>
+                                                <td className="TH2" key='2'>{item.serialNumber}</td>
+                                                <td className="TH2" key='3'>{item.empName}</td>
+                                                <td className="TH2" key='4'>{item.empId}</td>
+                                                <td className="TH2" key='4'>{item.requestDate}</td>
+                                                <td className="TH2" key='6'>{item.returnDate}</td>
                                             </tr>
                                         )
                                     })
@@ -315,13 +315,13 @@ export default class App extends Component {
 
                                             return (
                                                 <tr className="TH" key={item.id}>
-                                                    <td className="TH2" key={item.itemName}>{item.itemName}</td>
-                                                    <td className="TH2" key={item.empName}>{item.empName}</td>
-                                                    <td className="TH2" key={item.empId}>{item.empId}</td>
-                                                    <td className="TH2" key={item.dept}>{item.dept}</td>
-                                                    <td className="TH2" key={item.requestDate}>{item.requestDate}</td>
+                                                    <td className="TH2" key='1'>{item.itemName}</td>
+                                                    <td className="TH2" key='2'>{item.empName}</td>
+                                                    <td className="TH2" key='3'>{item.empId}</td>
+                                                    <td className="TH2" key='4'>{item.dept}</td>
+                                                    <td className="TH2" key='5'>{item.requestDate}</td>
                                                     {this.state.status[index] !== 'accepted' ?
-                                                        <td className="TH2" key={item.serialNumber}><Button
+                                                        <td className="TH2" key='6'><Button
                                                             className="btnn"
                                                             onClick={() => this.handleAccept(index)}><i
                                                             className="fa fa-check" aria-hidden="true"></i></Button>
@@ -330,15 +330,15 @@ export default class App extends Component {
                                                                 className="fa fa-trash" aria-hidden="true"></i></Button>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
-                                                        <td className="TH2" key={item.duration}><Button variant="success"
-                                                                                                        onClick={() => this.handleConfirm(index)}><i
+                                                        <td className="TH2" key='7'><Button variant="success"
+                                                                                            onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
                                                                     onClick={() => this.handleRejectAfterAccept(index)}><i
                                                                 className="fa fa-trash" aria-hidden="true"></i></Button>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type !== 'devices' ?
-                                                        <td className="TH2" key={item.estimatedReturnDate}><Button
+                                                        <td className="TH2" key="8"><Button
                                                             variant="success"
                                                             onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
@@ -348,7 +348,7 @@ export default class App extends Component {
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
                                                         <td className="TH2"
-                                                            key={item.estimatedReturnDate}>{this.state.serialNumbers[index]}</td> : false}
+                                                            key='9'>{this.state.serialNumbers[index]}</td> : false}
                                                 </tr>
                                             )
                                         })
@@ -395,8 +395,8 @@ export default class App extends Component {
                                     </tbody>
                                 </Table></> : false}
                                 {this.state.current === 'inventory' ? <><h1 align="center">Inventory</h1><Table striped
-                                                                                                               bordered
-                                                                                                               hover>
+                                                                                                                bordered
+                                                                                                                hover>
                                     <thead>
                                     <tr className="TH">
                                         <th>Item Name</th>
@@ -417,13 +417,14 @@ export default class App extends Component {
                                     </tbody>
                                 </Table></> : false}
                                 {this.state.current === 'users' ? <><h1 align="center">Users List</h1><Table striped
-                                                                                                            bordered
-                                                                                                            hover>
+                                                                                                             bordered
+                                                                                                             hover>
                                     <thead>
                                     <tr className="TH">
                                         <th>Employee Name</th>
                                         <th>Employee Id</th>
                                         <th>Email</th>
+                                        <th>Department</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -434,6 +435,7 @@ export default class App extends Component {
                                                 <td className="TH2" key={item.empName}>{item.empName}</td>
                                                 <td className="TH2" key={item.empId}>{item.empId}</td>
                                                 <td className="TH2" key={item.email}>{item.email}</td>
+                                                <td className="TH2" key={item.dept}>{item.dept}</td>
                                             </tr>
                                         )
                                     })
@@ -441,9 +443,6 @@ export default class App extends Component {
                                     </tbody>
                                 </Table></> : false}
                                 {this.state.current === 'dash' ? <>
-                                    {/*<h1 className="H">Hello Maria</h1>
-                                    <h4>Active Requests: {this.state.activeInfo.length}</h4>
-                                    <h4>Pending Requests: {this.state.pendingInfo.length}</h4>*/}
                                     <br/>
                                     <div>
                                         <h3>Welcome {this.props.user.empName},</h3>

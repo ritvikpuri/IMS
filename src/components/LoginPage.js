@@ -107,11 +107,9 @@ class LoginPage extends Component {
                                             <Button type="submit" variant="outline-info">Login</Button>
                                         </div>
                                         <div className="form-group col-md-6" align="left">
-                                            <Button type="reset" variant="outline-dark">Clear</Button>
+                                            {/*<Button type="reset" variant="outline-dark">Clear</Button>*/}
+                                            <Button variant="outline-success" onClick={this.handleSignup}>New User</Button>
                                         </div>
-                                    </div>
-                                    <div align="center">
-                                        <Button variant="outline-success" onClick={this.handleSignup}>New User</Button>
                                     </div>
                                 </div>
                             </form>

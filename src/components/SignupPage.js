@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './../App.css';
-import {Jumbotron, Container, Button} from 'react-bootstrap';
+import {Form, FormGroup, FormControl, Col, Button} from 'react-bootstrap';
 
 class SignupPage extends Component {
     constructor() {
@@ -20,7 +20,7 @@ class SignupPage extends Component {
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.dismissError = this.dismissError.bind(this);
-        this.handleLogin=this.handleLogin.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     dismissError() {
@@ -83,61 +83,68 @@ class SignupPage extends Component {
             password: evt.target.value,
         });
     }
-    handleLogin(){
+
+    handleLogin() {
         this.props.sendDataToLogin('login');
     }
 
     render() {
         return (
-
-            <form onSubmit={this.handleSubmit}>
-                <label className="SignupLabel">Email</label>
-                <input className="SignupInput" type="text" data-test="email" value={this.state.email}
-                       onChange={this.handleEmailChange} required/>
-                <br/>
-                <br/>
-                <br/>
-                <label className="SignupLabel">Employee Id</label>
-                <input className="SignupInput" type="text" data-test="username" value={this.state.username}
-                       onChange={this.handleUserChange} required/>
-                <br/>
-                <br/>
-                <br/>
-                <label className="SignupLabel">Name</label>
-                <input className="SignupInput" type="text" data-test="name" value={this.state.name}
-                       onChange={this.handleNameChange} required/>
-                <br/>
-                <br/>
-                <br/>
-                <label className="SignupLabel">Password</label>
-                <input className="SignupInput" type="password" data-test="password" value={this.state.password}
-                       onChange={this.handlePassChange} required/>
-                <br/>
-                <br/>
-                <br/>
-                <label className="SignupLabel">Department</label>
-                <input className="SignupInput" type="text" data-test="department" value={this.state.department}
-                       onChange={this.handleDepartmentChange} required/>
-                <br/>
-                <br/>
-                <br/>
-                <input type="submit" value="Create Account" data-test="submit"/>
-                <br/>
-                <p>{this.state.error}</p>
-                <br/>
-                <br/>
-                <button onClick={this.handleLogin}>login</button>
-            </form>
-
-
-
-
-
-
-
-
-
-
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-3"> </div>
+                    <div className="col-md-6 col-xs-12">
+                        <div className="jumbotron">
+                            <h1 className="text-center">Sign Up for IMS</h1>
+                            <p className="lead" align="center">
+                                Create your account to start requesting<i className="fa fa-plane"></i>
+                            </p>
+                            <br/>
+                            <Form onSubmit={this.handleSubmit}>
+                                <p className="lead" align="center" font="red">
+                                    {this.state.error}
+                                </p>
+                                <Form.Group controlId="formGroupEmail">
+                                    <Form.Label>Email Address</Form.Label>
+                                    <Form.Control type="email" placeholder="Enter email" value={this.state.email}
+                                                  onChange={this.handleEmailChange} required/>
+                                </Form.Group>
+                                <Form.Group controlId="formGroupName">
+                                    <Form.Label>Full Name</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter name" value={this.state.name}
+                                                  onChange={this.handleNameChange} required/>
+                                </Form.Group>
+                                <Form.Group controlId="formGroupPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder="Enter password" value={this.state.password}
+                                                  onChange={this.handlePassChange} required/>
+                                </Form.Group>
+                                <Form.Row>
+                                    <Col>
+                                        <Form.Label>Employee Id</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter ID" value={this.state.username}
+                                                      onChange={this.handleUserChange} required/>
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>Department</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter department" value={this.state.department}
+                                                      onChange={this.handleDepartmentChange} required/>
+                                    </Col>
+                                </Form.Row>
+                                <br/>
+                                <Form.Row>
+                                    <Col align="right">
+                                        <Button variant="outline-success" type="submit">Sign Up</Button>
+                                    </Col>
+                                    <Col>
+                                        <Button variant="outline-warning" onClick={this.handleLogin}>Back to Login</Button>
+                                    </Col>
+                                </Form.Row>
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

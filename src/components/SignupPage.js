@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './../App.css';
+import {Jumbotron, Container, Button} from 'react-bootstrap';
 
 class SignupPage extends Component {
     constructor() {
@@ -87,9 +88,6 @@ class SignupPage extends Component {
     }
 
     render() {
-        // NOTE: I use data-attributes for easier E2E testing
-        // but you don't need to target those (any css-selector will work)
-
         return (
 
             <form onSubmit={this.handleSubmit}>
@@ -130,6 +128,16 @@ class SignupPage extends Component {
                 <br/>
                 <button onClick={this.handleLogin}>login</button>
             </form>
+
+
+
+
+
+
+
+
+
+
         );
     }
 }

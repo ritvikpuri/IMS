@@ -213,8 +213,9 @@ export default class App extends Component {
             <Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand>
             <Nav className="mr-auto"/>
             <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-              <Button variant="outline-light">Search</Button>
+              {/*<FormControl type="text" placeholder="Search" className="mr-sm-2"/>*/}
+              {/*<Button variant="outline-light">Search</Button>*/}
+              <Button variant="warning" onClick={this.handleLogout}>Log out</Button>
             </Form>
           </Navbar>
           <Jumbotron>
@@ -298,7 +299,7 @@ export default class App extends Component {
                               {this.state.status[index] !== 'accepted' ?
                                   <td className="TH2" key={item.serialNumber}><Button
                                       className="btnn"
-                                      onClick={() => this.handleAccept(index)}>accept</Button>
+                                      onClick={() => this.handleAccept(index)}>shivensharmaekbohotbadakhaddahai</Button>
                                   </td> : false}
                               {this.state.status[index] === 'accepted' && item.type === 'devices' ?
                                   <td className="TH2" key={item.duration}><Button className="btnn"
@@ -351,9 +352,9 @@ export default class App extends Component {
                             <td className="TH2"
                                 key={item.estimatedReturnDate}>{item.estimatedReturnDate}</td>
                             <td className="TH2" key={item.index}>
-                              <button className="btnn"
+                              <Button variant="primary"
                                       onClick={() => this.handleReturn(index)}>Returned
-                              </button>
+                              </Button>
                             </td>
                           </tr>
                       )
@@ -411,9 +412,6 @@ export default class App extends Component {
               </div>
             </div>
           </Jumbotron>
-            <div className="logout">
-                <button onClick={this.handleLogout}>log out</button>
-            </div>
           </Container>
 
             );

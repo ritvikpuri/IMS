@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './../App.css';
+import {Button} from 'react-bootstrap';
 
 
 class LoginPage extends Component {
@@ -74,34 +75,36 @@ class LoginPage extends Component {
                             <p className="lead" align="center">
                                 Come INVENTORY with us <i className="fa fa-plane"></i>
                             </p>
-                            <br/>
+                            <br/><br/>
                             <form onSubmit={this.handleSubmit}>
-
-                                <div className="form-group" align="center">
+                                <div class="form-group">
                                     <div class="form-row">
-                                        <div className="form-group col-md-3">Username</div>
-                                        <div className="form-group col-md-6">
-                                        <input name="username" type="text" placeholder="Username"
-                                               value={this.state.username} onChange={this.handleUserChange}
-                                               required/>
+                                        <div class="form-group col-md-6" align="center">Username</div>
+                                        <div class="form-group col-md-6">
+                                            <input name="username" type="text" placeholder="username"
+                                                   value={this.state.username} onChange={this.handleUserChange}
+                                                   required/>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div className="form-group col-md-3">Password</div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6" align="center">Password</div>
                                         <div className="form-group col-md-6">
-                                            <input name="password" type="password"
-                                                   placeholder="Password" value={this.state.password}
-                                                   onChange={this.handlePassChange} required/>
+                                            <input name="password" type="password" placeholder="password"
+                                                   value={this.state.password} onChange={this.handlePassChange}
+                                                   required/>
                                         </div>
-                                    </div>
-                                    <br/><br/>
-                                    <div align="center">
-                                        <button type="submit" className="btn btn-outline-info">Login</button>
-                                        <button type="reset" className="btn btn-outline-dark">Close</button>
                                     </div>
                                     <br/>
-                                    <div>
-                                        <button type="outline-success" onClick={this.handleSignup}>New flyer?</button>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6" align="right">
+                                            <Button type="submit" variant="outline-info">Login</Button>
+                                        </div>
+                                        <div className="form-group col-md-6" align="left">
+                                            <Button type="reset" variant="outline-dark">Clear</Button>
+                                        </div>
+                                    </div>
+                                    <div align="center">
+                                        <Button variant="outline-success" onClick={this.handleSignup}>New User</Button>
                                     </div>
                                 </div>
                             </form>
@@ -109,8 +112,6 @@ class LoginPage extends Component {
                     </div>
                 </div>
             </div>
-
-
         );
     }
 }

@@ -11,7 +11,8 @@ class LoggedIn extends React.Component {
         this.state = {
             curState: '',
             info: [''],
-            duration: [''],
+            hours: [''],
+            minutes:[''],
             current: 'devices',
             selectedElement: {
                 empId: '',
@@ -22,7 +23,8 @@ class LoggedIn extends React.Component {
             },
             error: ['']
         }
-        this.handleDuration = this.handleDuration.bind(this);
+        this.handleHours = this.handleHours.bind(this);
+        this.handleMinutes = this.handleMinutes.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
         this.handleRequest = this.handleRequest.bind(this);
         this.handleStationary = this.handleStationary.bind(this);
@@ -31,11 +33,19 @@ class LoggedIn extends React.Component {
 
     }
 
-    handleDuration(e, index) {
-        var arr = [...this.state.duration];
+    handleHours(e, index) {
+        var arr = [...this.state.hours];
         arr[index] = e.target.value;
         this.setState({
-            duration: arr
+            hours: arr
+        })
+    }
+
+    handleMinutes(e, index) {
+        var arr = [...this.state.minutes];
+        arr[index] = e.target.value;
+        this.setState({
+            minutes: arr
         })
     }
 
@@ -108,7 +118,7 @@ class LoggedIn extends React.Component {
 
 
     handleRequest(index) {
-        if (this.state.duration[index] !== '' || this.state.current !== 'devices') {
+        if (this.state.minutes[index] !== '' || this.state.hours[index] !== '' || this.state.current !== 'devices') {
             var tempError = [...this.state.error];
             tempError[index] = 'Request Sent';
             this.setState({error: tempError});
@@ -125,7 +135,8 @@ class LoggedIn extends React.Component {
                     itemName: this.state.info[index].itemName,
                     type: this.state.current,
                     active: false,
-                    duration: this.state.duration[index],
+                    hours: this.state.hours[index],
+                    minutes:this.state.minutes,
                     pending: false
                 })
             })
@@ -189,7 +200,8 @@ class LoggedIn extends React.Component {
                                 <thead>
                                 <tr className="TH3">
                                     <th>Item Name</th>
-                                    <th>Duration (Hrs)</th>
+                                    <th>Hrs</th>
+                                    <th>Mins</th>
                                     <th>Send Request</th>
 
                                 </tr>
@@ -200,9 +212,13 @@ class LoggedIn extends React.Component {
                                     return (
                                         <tr className="TH3" key={item.id}>
                                             <td className="TH3" key={item.itemName}>{item.itemName}</td>
-                                            <td className="TH3"><input type="number" min="1" max="10" required={true}
-                                                                       value={this.state.duration[index]}
-                                                                       onChange={(e) => this.handleDuration(e, index)}
+                                            <td className="TH3"><input type="number" min="0" max="10" required={true}
+                                                                       value={this.state.hours[index]}
+                                                                       onChange={(e) => this.handleHours(e, index)}
+                                            /></td>
+                                            <td className="TH3"><input type="number" min="0" max="59" required={true}
+                                                                       value={this.state.minutes[index]}
+                                                                       onChange={(e) => this.handleMinutes(e, index)}
                                             /></td>
                                             <td className="TH3" key={index}>
                                                 <Button variant="outline-primary"

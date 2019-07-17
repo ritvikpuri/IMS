@@ -237,8 +237,6 @@ export default class App extends Component {
                         Dashboard</Navbar.Brand>
                     <Nav className="mr-auto"/>
                     <Form inline>
-                        {/*<FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-                        <Button variant="outline-light">Search</Button>*/}
                         <Button variant="danger" onClick={this.handleLogout}>Log Out <i className="fa fa-sign-out"
                                                                                         aria-hidden="true"></i></Button>
                     </Form>

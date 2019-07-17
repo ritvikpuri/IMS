@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Classes.DeviceInventory;
@@ -13,8 +14,8 @@ import com.example.demo.Service.DeviceInventoryService;
 
 @Service
 @Transactional
-public class DeviceInventoryServiceImpl implements DeviceInventoryService{
-	
+public class DeviceInventoryServiceImpl implements DeviceInventoryService {
+
 	@Autowired
 	DeviceInventoryRepository deviceInventoryRepository;
 
@@ -37,7 +38,5 @@ public class DeviceInventoryServiceImpl implements DeviceInventoryService{
 	public void deleteBySerialNumber(String serialNumber) {
 		deviceInventoryRepository.deleteBySerialNumber(serialNumber);
 	}
-
-	
 
 }

@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.VariableStrings;
 import com.example.demo.Classes.Inventory;
 import com.example.demo.Service.InventoryService;
-
-import com.example.demo.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -46,7 +45,9 @@ public class InventoryController {
 		List<Inventory> listOfInventory = inventoryService.findAll();
 		boolean check = false;
 		for(Inventory item: listOfInventory) {
-			if(inventory.getItemName().equalsIgnoreCase(item.getItemName())) {
+			String inventoryNameToCompare = inventory.getItemName().replaceAll("\\s+","");
+			String itemNameToCompare = item.getItemName().replaceAll("\\s+","");
+			if(itemNameToCompare.equalsIgnoreCase(inventoryNameToCompare)) {
 				check = true;
 				int currentQty = item.getQty();
 				inventoryService.deleteById(item.getId());

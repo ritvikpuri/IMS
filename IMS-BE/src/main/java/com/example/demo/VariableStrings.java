@@ -1,8 +1,8 @@
 package com.example.demo;
 
-public interface VariableStrings {
+public class VariableStrings {
 
-	String MEDICINES = "Medicine";
-	String STATIONARY = "Stationary";
-	String DEVICES = "Devices";
+	public static final String MEDICINES = "Medicine";
+	public static final String STATIONARY = "Stationary";
+	public static final String DEVICES = "Devices";
 }

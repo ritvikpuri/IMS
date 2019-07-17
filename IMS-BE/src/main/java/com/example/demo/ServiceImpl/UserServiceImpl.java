@@ -9,25 +9,21 @@ import com.example.demo.Classes.User;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Service.UserService;
 
-
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	
+
 	@Override
 	public User findByEmpId(String empId) {
 		return userRepository.findByEmpId(empId);
 	}
 
-
 	@Override
 	public void save(User user) {
 		userRepository.save(user);
 	}
-
 
 	@Override
 	public List<User> findAll() {

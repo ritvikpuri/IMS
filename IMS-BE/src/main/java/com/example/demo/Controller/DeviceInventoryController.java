@@ -31,7 +31,9 @@ public class DeviceInventoryController {
 		List<Inventory> listOfInventory = inventoryService.findAll();
 		boolean check = false;
 		for(Inventory item: listOfInventory) {
-			if(deviceInventory.getItemName().equalsIgnoreCase(item.getItemName())) {
+			String inventoryNameToCompare = deviceInventory.getItemName().replaceAll("\\s+","");
+			String itemNameToCompare = item.getItemName().replaceAll("\\s+","");
+			if(itemNameToCompare.equalsIgnoreCase(inventoryNameToCompare)) {
 				check = true;
 				item.setQty(item.getQty()+1);
 				inventoryService.saveAndFlush(item);

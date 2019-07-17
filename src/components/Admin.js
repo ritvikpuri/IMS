@@ -106,7 +106,7 @@ export default class App extends Component {
             body: JSON.stringify(this.state.activeInfo[index])
         });
         var array = [...this.state.status];
-        array[index] = array[index + 1];
+        array.splice(index,1);
         this.setState({status: array});
     }
 
@@ -121,7 +121,7 @@ export default class App extends Component {
             body: JSON.stringify(this.state.activeInfo[index])
         });
         var array = [...this.state.status];
-        array[index] = array[index + 1];
+        array.splice(index,1);
         this.setState({status: array});
     }
 
@@ -195,9 +195,16 @@ export default class App extends Component {
                 body: JSON.stringify(this.state.activeInfo[index])
             })
         }
+        console.log(this.state.status);
         var tempStatus = [...this.state.status];
-        tempStatus[index] = tempStatus[index + 1];
+        tempStatus.splice(index,1);
         this.setState({status: tempStatus});
+        console.log(this.state.status);
+        console.log(this.state.serialNumbers);
+        var tempSno = [...this.state.serialNumbers];
+        tempSno.splice(index,1);
+        this.setState({serialNumbers: tempSno});
+        console.log(this.state.serialNumbers);
     }
 
     handleReturn(index) {
@@ -209,7 +216,6 @@ export default class App extends Component {
             },
             body: JSON.stringify(this.state.pendingInfo[index])
         });
-        console.log("here", this.state.pendingInfo[index])
     }
 
     handleClick(val) {
@@ -284,12 +290,12 @@ export default class App extends Component {
 
                                         return (
                                             <tr className="TH" key={item.id}>
-                                                <td className="TH2" key="1">{item.itemName}</td>
-                                                <td className="TH2" key='2'>{item.serialNumber}</td>
-                                                <td className="TH2" key='3'>{item.empName}</td>
-                                                <td className="TH2" key='4'>{item.empId}</td>
-                                                <td className="TH2" key='4'>{item.requestDate}</td>
-                                                <td className="TH2" key='6'>{item.returnDate}</td>
+                                                <td className="TH2" key="a">{item.itemName}</td>
+                                                <td className="TH2" key='b'>{item.serialNumber}</td>
+                                                <td className="TH2" key='c'>{item.empName}</td>
+                                                <td className="TH2" key='d'>{item.empId}</td>
+                                                <td className="TH2" key='e'>{item.requestDate}</td>
+                                                <td className="TH2" key='f'>{item.returnDate}</td>
                                             </tr>
                                         )
                                     })
@@ -315,13 +321,13 @@ export default class App extends Component {
 
                                             return (
                                                 <tr className="TH" key={item.id}>
-                                                    <td className="TH2" key='1'>{item.itemName}</td>
-                                                    <td className="TH2" key='2'>{item.empName}</td>
-                                                    <td className="TH2" key='3'>{item.empId}</td>
-                                                    <td className="TH2" key='4'>{item.dept}</td>
-                                                    <td className="TH2" key='5'>{item.requestDate}</td>
+                                                    <td className="TH2" key='a'>{item.itemName}</td>
+                                                    <td className="TH2" key='b'>{item.empName}</td>
+                                                    <td className="TH2" key='c'>{item.empId}</td>
+                                                    <td className="TH2" key='d'>{item.dept}</td>
+                                                    <td className="TH2" key='e'>{item.requestDate}</td>
                                                     {this.state.status[index] !== 'accepted' ?
-                                                        <td className="TH2" key='6'><Button
+                                                        <td className="TH2" key='f'><Button
                                                             className="btnn"
                                                             onClick={() => this.handleAccept(index)}><i
                                                             className="fa fa-check" aria-hidden="true"></i></Button>
@@ -330,7 +336,7 @@ export default class App extends Component {
                                                                 className="fa fa-trash" aria-hidden="true"></i></Button>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
-                                                        <td className="TH2" key='7'><Button variant="success"
+                                                        <td className="TH2" key='g'><Button variant="success"
                                                                                             onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
@@ -338,17 +344,17 @@ export default class App extends Component {
                                                                 className="fa fa-trash" aria-hidden="true"></i></Button>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type !== 'devices' ?
-                                                        <td className="TH2" key="8"><Button
+                                                        <td className="TH2" key="h"><Button
                                                             variant="success"
                                                             onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
-                                                                    onClick={() => this.handleReject(index)}><i
+                                                                    onClick={() => this.handleRejectAfterAccept(index)}><i
                                                                 className="fa fa-trash" aria-hidden="true"></i></Button>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
                                                         <td className="TH2"
-                                                            key='9'>{this.state.serialNumbers[index]}</td> : false}
+                                                            key='i'>{this.state.serialNumbers[index]}</td> : false}
                                                 </tr>
                                             )
                                         })
@@ -376,14 +382,14 @@ export default class App extends Component {
 
                                         return (
                                             <tr className="TH" key={item.id}>
-                                                <td className="TH2" key={item.itemName}>{item.itemName}</td>
-                                                <td className="TH2" key={item.serialNumber}>{item.serialNumber}</td>
-                                                <td className="TH2" key={item.empName}>{item.empName}</td>
-                                                <td className="TH2" key={item.empId}>{item.empId}</td>
-                                                <td className="TH2" key={item.acceptDate}>{item.acceptDate}</td>
+                                                <td className="TH2" key="a">{item.itemName}</td>
+                                                <td className="TH2" key='b'>{item.serialNumber}</td>
+                                                <td className="TH2" key='c'>{item.empName}</td>
+                                                <td className="TH2" key='d'>{item.empId}</td>
+                                                <td className="TH2" key='e'>{item.acceptDate}</td>
                                                 <td className="TH2"
                                                     key={item.estimatedReturnDate}>{item.estimatedReturnDate}</td>
-                                                <td className="TH2" key={item.index}>
+                                                <td className="TH2" key='f'>
                                                     <Button variant="primary"
                                                             onClick={() => this.handleReturn(index)}>Returned
                                                     </Button>
@@ -408,8 +414,8 @@ export default class App extends Component {
 
                                         return (
                                             <tr className="TH" key={item.id}>
-                                                <td className="TH2" key={item.itemName}>{item.itemName}</td>
-                                                <td className="TH2" key={item.qty}>{item.qty}</td>
+                                                <td className="TH2" key='a'>{item.itemName}</td>
+                                                <td className="TH2" key='b'>{item.qty}</td>
                                             </tr>
                                         )
                                     })
@@ -432,10 +438,10 @@ export default class App extends Component {
 
                                         return (
                                             <tr className="TH" key={item.id}>
-                                                <td className="TH2" key={item.empName}>{item.empName}</td>
-                                                <td className="TH2" key={item.empId}>{item.empId}</td>
-                                                <td className="TH2" key={item.email}>{item.email}</td>
-                                                <td className="TH2" key={item.dept}>{item.dept}</td>
+                                                <td className="TH2" key='a'>{item.empName}</td>
+                                                <td className="TH2" key='b'>{item.empId}</td>
+                                                <td className="TH2" key='c'>{item.email}</td>
+                                                <td className="TH2" key='d'>{item.dept}</td>
                                             </tr>
                                         )
                                     })

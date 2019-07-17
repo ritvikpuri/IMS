@@ -39,11 +39,10 @@ class LoginPage extends Component {
             console.log(" the result is ", result);
             result.json().then((response) => {
                 console.log(" the final response is ", response);
-                if (response.status===401) {
+                if (response.status === 401) {
                     console.log(result.status);
-                    this.setState({error:'Incorrect Credentials'})
-            }
-                else{
+                    this.setState({error: 'Incorrect Credentials'})
+                } else {
                     this.props.sendDataToLogin(response);
                 }
 
@@ -54,7 +53,7 @@ class LoginPage extends Component {
     handleUserChange(evt) {
         this.setState({
             username: evt.target.value,
-            error:''
+            error: ''
         });
     };
 
@@ -65,7 +64,7 @@ class LoginPage extends Component {
     handlePassChange(evt) {
         this.setState({
             password: evt.target.value,
-            error:''
+            error: ''
         });
     }
 
@@ -77,6 +76,7 @@ class LoginPage extends Component {
                     <div className="col-md-3"></div>
                     <div className="col-md-6 col-xs-12">
                         <div className="jumbotron">
+                            <br/><br/><br/>
                             <h1 className="text-center">IMS-IOMEDIA</h1>
                             <p className="lead" align="center">
                                 Login Page
@@ -108,7 +108,8 @@ class LoginPage extends Component {
                                         </div>
                                         <div className="form-group col-md-6" align="left">
                                             {/*<Button type="reset" variant="outline-dark">Clear</Button>*/}
-                                            <Button variant="outline-success" onClick={this.handleSignup}>New User</Button>
+                                            <Button variant="outline-success" onClick={this.handleSignup}>New
+                                                User</Button>
                                         </div>
                                     </div>
                                 </div>

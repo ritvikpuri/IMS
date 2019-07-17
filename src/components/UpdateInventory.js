@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {Form, Col, Button} from "react-bootstrap";
+import {Form, Col, Button, Row, FormControl, FormLabel} from "react-bootstrap";
 
 class UpdateInventory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             itemName: '',
-            qty: 1,
-            type: '',
+            qty:'',
+            type: 'Medicine',
             sno: '',
             error: ''
         };
@@ -20,6 +20,7 @@ class UpdateInventory extends React.Component {
     }
 
     handleNameChange(e) {
+        this.setState({error: ''});
         this.setState({
             itemName: e.target.value
         })
@@ -31,7 +32,7 @@ class UpdateInventory extends React.Component {
         this.setState({
             type: e.target.value,
             itemName: '',
-            qty: 0,
+            qty: '',
             sno: ''
         })
     }
@@ -81,6 +82,7 @@ class UpdateInventory extends React.Component {
                     serialNumber: this.state.sno
                 })
             })
+            console.log(this.state);
         }
 
     }
@@ -100,8 +102,7 @@ class UpdateInventory extends React.Component {
                             <Form.Group as={Col} id="InvtLabel" value={this.state.type}
                                         onChange={this.handleTypeChange}>
                                 <Form.Control as="select">
-                                    <option value="select">Select Type</option>
-                                    <option value="Medicine">Medicine</option>
+                                    <option value="Medicine" selected>Medicine</option>
                                     <option value="Stationary">Stationary</option>
                                     <option value="Devices">Devices</option>
                                 </Form.Control>
@@ -114,7 +115,7 @@ class UpdateInventory extends React.Component {
                             Item Name
                         </div>
                         <div className="form-group col-md-3">
-                            <input type="text" value={this.state.itemName} onChange={this.handleNameChange}/>
+                            <input type="text" value={this.state.itemName} onChange={this.handleNameChange} required/>
                         </div>
                     </div>
                     <div class="form-row">
@@ -124,14 +125,13 @@ class UpdateInventory extends React.Component {
                         </div>
                         <div class="form-group col-md-3">
                             {this.state.type !== 'Devices' ?
-                                <input type="text" value={this.state.qty} onChange={this.handleQtyChange}/> : false}
+                                <input type="text" value={this.state.qty} onChange={this.handleQtyChange} required/> : false}
                             {this.state.type === 'Devices' ?
                                 <input type="text" value={this.state.sno} onChange={this.handleSnoChange}
                                        required/> : false}
 
                         </div>
                     </div>
-
                     <br/>
                     <br/>
                     <Button variant="outline-success" type="submit" value="Submit">Add Item</Button>

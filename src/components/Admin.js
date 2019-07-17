@@ -3,6 +3,7 @@ import {Jumbotron, Container, Badge, Nav, Navbar, Table, FormControl, Button, Fo
 import axios from 'axios';
 import UpdateInventory from "./UpdateInventory";
 import 'font-awesome/css/font-awesome.min.css';
+import './../App.css';
 
 export default class App extends Component {
     constructor(props) {
@@ -248,11 +249,11 @@ export default class App extends Component {
                                 <ListGroup>
                                     <ListGroup.Item variant="info">Requests</ListGroup.Item>
                                     <ListGroup.Item action
-                                                    onClick={() => this.handleClick('active')}>New <Badge
-                                        variant="danger"> {this.state.activeInfo.length}</Badge></ListGroup.Item>
+                                                    onClick={() => this.handleClick('active')}>New {this.state.activeInfo.length>0?<Badge
+                                        variant="danger"> {this.state.activeInfo.length}</Badge>:false}</ListGroup.Item>
                                     <ListGroup.Item action
-                                                    onClick={() => this.handleClick('pending')}>Pending <Badge
-                                        variant="danger"> {this.state.pendingInfo.length}</Badge></ListGroup.Item>
+                                                    onClick={() => this.handleClick('pending')}>Pending {this.state.pendingInfo.length>0?<Badge
+                                        variant="danger"> {this.state.pendingInfo.length}</Badge>:false}</ListGroup.Item>
                                     <ListGroup.Item action
                                                     onClick={() => this.handleClick('history')}>History</ListGroup.Item>
                                     <br/>

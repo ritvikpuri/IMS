@@ -136,7 +136,7 @@ class LoggedIn extends React.Component {
                     type: this.state.current,
                     active: false,
                     hours: this.state.hours[index],
-                    minutes:this.state.minutes,
+                    minutes:this.state.minutes[index],
                     pending: false
                 })
             })

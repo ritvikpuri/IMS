@@ -46,7 +46,10 @@ public class Request {
 	private Boolean pending=false;
 
 	@Column
-	private Integer duration;
+	private Integer hours;
+	
+	@Column
+	private Integer minutes;
 	
 	@Column
 	private Integer currentQty;
@@ -137,12 +140,20 @@ public class Request {
 		this.returnDate = returnDate;
 	}
 
-	public Integer getDuration() {
-		return duration;
+	public Integer getHours() {
+		return hours;
 	}
 
-	public void setDuration(Integer duration) {
-		this.duration = duration;
+	public void setHours(Integer hours) {
+		this.hours = hours;
+	}
+
+	public Integer getMinutes() {
+		return minutes;
+	}
+
+	public void setMinutes(Integer minutes) {
+		this.minutes = minutes;
 	}
 
 	public String getEstimatedReturnDate() {

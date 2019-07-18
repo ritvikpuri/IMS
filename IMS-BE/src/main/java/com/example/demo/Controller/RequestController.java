@@ -3,6 +3,8 @@ package com.example.demo.Controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,24 +50,23 @@ public class RequestController {
 	DeviceInventoryService deviceInventoryService;
 
 	private static final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
 
 	@PostMapping("/request")
 	public void getRequest(@RequestBody Request request) throws ParseException {
 		try {
 			request.setActive(true);
-			Date date = new Date();
-			request.setRequestDate(sdf.format(date));
+			LocalDateTime date = LocalDateTime.now();
+			String formatDateTime = date.format(formatter);
+			request.setRequestDate(formatDateTime);
 
 			Inventory inventoryItem = inventoryService.findByItemName(request.getItemName());
 			if (inventoryItem.getType().equals(VariableStrings.DEVICES)) {
-				StringBuffer sb = new StringBuffer(request.getRequestDate());
-				int time = Integer.parseInt(sb.substring(11, 13)) + request.getDuration();
-				if (time > 24) {
-					time = 21;
-				}
-				sb.replace(11, 13, Integer.toString(time));
-				String t = sb.toString();
-				request.setEstimatedReturnDate(t);
+				LocalDateTime newDate = date.plusHours(request.getHours());
+				LocalDateTime finalDate = newDate.plusMinutes(request.getMinutes());
+				String formatEstDate = finalDate.format(formatter);
+				request.setEstimatedReturnDate(formatEstDate);
 			}
 			request.setCurrentQty(requestService.findQtyByItemName(request.getItemName()));
 			requestService.saveAndFlush(request);

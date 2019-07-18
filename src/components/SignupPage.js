@@ -50,7 +50,13 @@ class SignupPage extends Component {
                 else this.setState({error: 'Employee code already exists'});
             })
         })
-
+        this.setState({
+            name: '',
+            password: '',
+            email: '',
+            department: '',
+            empCode: ''
+        })
 
     }
 
@@ -92,7 +98,7 @@ class SignupPage extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-3"> </div>
+                    <div className="col-md-3"></div>
                     <div className="col-md-6 col-xs-12">
                         <div className="jumbotron">
                             <h1 className="text-center">Sign Up for IMS</h1>
@@ -101,7 +107,7 @@ class SignupPage extends Component {
                             </p>
                             <br/>
                             <Form onSubmit={this.handleSubmit}>
-                                <p className="lead" align="center" font="red">
+                                <p className="lead" align="center" font= "#FF0000">
                                     {this.state.error}
                                 </p>
                                 <Form.Group controlId="formGroupEmail">
@@ -116,7 +122,8 @@ class SignupPage extends Component {
                                 </Form.Group>
                                 <Form.Group controlId="formGroupPassword">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Enter password" value={this.state.password}
+                                    <Form.Control type="password" placeholder="Enter password"
+                                                  value={this.state.password}
                                                   onChange={this.handlePassChange} required/>
                                 </Form.Group>
                                 <Form.Row>
@@ -127,7 +134,8 @@ class SignupPage extends Component {
                                     </Col>
                                     <Col>
                                         <Form.Label>Department</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter department" value={this.state.department}
+                                        <Form.Control type="text" placeholder="Enter department"
+                                                      value={this.state.department}
                                                       onChange={this.handleDepartmentChange} required/>
                                     </Col>
                                 </Form.Row>
@@ -137,7 +145,8 @@ class SignupPage extends Component {
                                         <Button variant="outline-success" type="submit">Sign Up</Button>
                                     </Col>
                                     <Col>
-                                        <Button variant="outline-warning" onClick={this.handleLogin}>Back to Login</Button>
+                                        <Button variant="outline-warning" onClick={this.handleLogin}>Back to
+                                            Login</Button>
                                     </Col>
                                 </Form.Row>
                             </Form>

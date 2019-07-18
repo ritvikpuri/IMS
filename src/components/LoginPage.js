@@ -77,7 +77,9 @@ class LoginPage extends Component {
                     <div className="col-md-6 col-xs-12">
                         <div className="jumbotron">
                             <br/><br/><br/>
-                            <h1 className="text-center">IMS-IOMEDIA</h1>
+                            <h1 className="text-center">Inventory System</h1>
+                            <h3>IO-MEDIA</h3>
+                            <br/>
                             <p className="lead" align="center">
                                 Login Page
                             </p>

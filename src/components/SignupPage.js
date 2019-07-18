@@ -55,7 +55,7 @@ class SignupPage extends Component {
             password: '',
             email: '',
             department: '',
-            empCode: ''
+            username: ''
         })
 
     }

@@ -28,36 +28,42 @@ class SignupPage extends Component {
     }
 
     handleSubmit(evt) {
-
         evt.preventDefault();
-
-        fetch('http://10.0.2.235:8080/signup', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                empId: this.state.username,
-                password: this.state.password,
-                empName: this.state.name,
-                email: this.state.email,
-                dept: this.state.department
+        var upperCaseRegex=new RegExp("^(?=.*[A-Z])");
+        var numberRegex=new RegExp("^(?=.*[0-9])");
+        var specialCharacterRegex=new RegExp("^(?=.*[!@#\\$%\\^&])");
+        if (this.state.password.length < 9) this.setState({error: 'minimum 8 characters required'});
+        else if (!upperCaseRegex.test(this.state.password)) this.setState({error: 'password must contain an uppercase letter'});
+        else if (!numberRegex.test(this.state.password)) this.setState({error: 'password must contain a digit'});
+        else if (!specialCharacterRegex.test(this.state.password))  this.setState({error: 'password must contain a special character'});
+        else {
+            fetch('http://10.0.2.235:8080/signup', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    empId: this.state.username,
+                    password: this.state.password,
+                    empName: this.state.name,
+                    email: this.state.email,
+                    dept: this.state.department
+                })
+            }).then((result) => {
+                result.json().then((json) => {
+                    if (json) this.setState({error: 'signup successful! go to login'});
+                    else this.setState({error: 'Employee code already exists'});
+                })
             })
-        }).then((result) => {
-            result.json().then((json) => {
-                if (json) this.setState({error: 'signup successful! go to login'});
-                else this.setState({error: 'Employee code already exists'});
+            this.setState({
+                name: '',
+                password: '',
+                email: '',
+                department: '',
+                username: ''
             })
-        })
-        this.setState({
-            name: '',
-            password: '',
-            email: '',
-            department: '',
-            username: ''
-        })
-
+        }
     }
 
     handleEmailChange(evt) {
@@ -107,7 +113,7 @@ class SignupPage extends Component {
                             </p>
                             <br/>
                             <Form onSubmit={this.handleSubmit}>
-                                <p className="lead" align="center" font= "#FF0000">
+                                <p className="lead" align="center" font="#FF0000">
                                     {this.state.error}
                                 </p>
                                 <Form.Group controlId="formGroupEmail">

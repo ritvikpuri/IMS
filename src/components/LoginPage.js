@@ -87,7 +87,7 @@ class LoginPage extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <div className="form-row">
-                                        <div className="form-group col-md-6" align="center">Username</div>
+                                        <div className="form-group col-md-6" align="center">Employee Id</div>
                                         <div className="form-group col-md-6">
                                             <input name="username" type="text" placeholder="username"
                                                    value={this.state.username} onChange={this.handleUserChange}
@@ -118,6 +118,10 @@ class LoginPage extends Component {
                             </form>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <img className="IomediaImage" src="https://partnerlink.progress.com/images/default-source/partner-logos/iomedia_logo_regular.png" width="300px" height="100px" >
+                    </img>
                 </div>
             </div>
         );

@@ -12,7 +12,7 @@ class LoggedIn extends React.Component {
             curState: '',
             info: [''],
             hours: [''],
-            minutes:[''],
+            minutes: [''],
             current: 'devices',
             selectedElement: {
                 empId: '',
@@ -136,7 +136,7 @@ class LoggedIn extends React.Component {
                     type: this.state.current,
                     active: false,
                     hours: this.state.hours[index],
-                    minutes:this.state.minutes[index],
+                    minutes: this.state.minutes[index],
                     pending: false
                 })
             })
@@ -177,6 +177,7 @@ class LoggedIn extends React.Component {
                             <tr className="TH">
                                 <th>Item Name</th>
                                 <th>Send Request</th>
+                                <th>Request Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -200,9 +201,9 @@ class LoggedIn extends React.Component {
                                 <thead>
                                 <tr className="TH3">
                                     <th>Item Name</th>
-                                    <th>Hrs</th>
-                                    <th>Mins</th>
+                                    <th>Duration(Hrs:Mins)</th>
                                     <th>Send Request</th>
+                                    <th>Request Status</th>
 
                                 </tr>
                                 </thead>
@@ -214,12 +215,13 @@ class LoggedIn extends React.Component {
                                             <td className="TH3" key={item.itemName}>{item.itemName}</td>
                                             <td className="TH3"><input type="number" min="0" max="10" required={true}
                                                                        value={this.state.hours[index]}
-                                                                       onChange={(e) => this.handleHours(e, index)}
-                                            /></td>
-                                            <td className="TH3"><input type="number" min="0" max="59" required={true}
-                                                                       value={this.state.minutes[index]}
-                                                                       onChange={(e) => this.handleMinutes(e, index)}
-                                            /></td>
+                                                                       onChange={(e) => this.handleHours(e, index)}/>
+                                                <span> : </span>
+                                                <input type="number" min="0" max="59" required={true}
+                                                       value={this.state.minutes[index]}
+                                                       onChange={(e) => this.handleMinutes(e, index)}
+                                                />
+                                            </td>
                                             <td className="TH3" key={index}>
                                                 <Button variant="outline-primary"
                                                         onClick={() => this.handleRequest(index)}>Request</Button>

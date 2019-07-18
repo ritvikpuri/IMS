@@ -8,11 +8,13 @@
   pointer-events: none;
 }
 body{
-  background: url(https://newevolutiondesigns.com/images/freebies/hd-wallpaper-41.jpg);
+  background: url(http://tampabaylightning.io-media.com/web/images/VV_fbshareicon_Retina.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-.LoginPage{
-  background-image: url(https://wallpaperplay.com/walls/full/1/5/7/101658.jpg);
-}
+
 .App-header {
   background-color: linear-gradient(180deg, #c5aa77, #5c9a9d);
   min-height: 100vh;
@@ -36,7 +38,10 @@ body{
 h1,h2,h3,h4,h5,h6,Table{
   text-align: center;
 }
-
+.IomediaImage{
+  opacity: .6;
+  margin-left: 36%;
+}
 
 @keyframes App-logo-spin {
   from {

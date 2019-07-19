@@ -149,10 +149,14 @@ class LoggedIn extends React.Component {
             tempError[index] = 'field cannot be empty'
             this.setState({error: tempError});
         }
-        this.setState({
-        hours:[''],
-        minutes:['']
-    });
+
+        var arr=[...this.state.hours];
+        arr[index]='';
+        this.setState({hours:arr});
+        var arr=[...this.state.minutes];
+        arr[index]='';
+        this.setState({minutes:arr});
+
 
     }
 

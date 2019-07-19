@@ -89,7 +89,7 @@ class LoginPage extends Component {
                                     <div className="form-row">
                                         <div className="form-group col-md-6" align="center">Employee Id</div>
                                         <div className="form-group col-md-6">
-                                            <input name="username" type="text" placeholder="username"
+                                            <input name="username" type="text" placeholder="emp id"
                                                    value={this.state.username} onChange={this.handleUserChange}
                                                    required/>
                                         </div>

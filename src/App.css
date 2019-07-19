@@ -8,11 +8,13 @@
   pointer-events: none;
 }
 body{
-  background: url(http://tampabaylightning.io-media.com/web/images/VV_fbshareicon_Retina.jpg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: url(https://i.ibb.co/KVy8CHh/backimage.png);
+  background-repeat:repeat;
+  ;
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
 }
 
 .App-header {
@@ -35,11 +37,14 @@ body{
   width:auto !important;
   display:inline-block;
 }
+.ButtonDiv{
+  display: flex;
+}
 h1,h2,h3,h4,h5,h6,Table{
   text-align: center;
 }
 .IomediaImage{
-  opacity: .6;
+  opacity: .4;
   margin-left: 36%;
 }
 

@@ -63,6 +63,7 @@ class LoggedIn extends React.Component {
             })
             .catch(error => console.log(error));
         this.setState({curState: 'fin'});
+
     }
 
     handleStationary() {
@@ -118,10 +119,8 @@ class LoggedIn extends React.Component {
 
 
     handleRequest(index) {
-        if (this.state.minutes[index] !== '' || this.state.hours[index] !== '' || this.state.current !== 'devices') {
-            var tempError = [...this.state.error];
-            tempError[index] = 'Request Sent';
-            this.setState({error: tempError});
+        if ((((this.state.minutes[index] >= 0 && this.state.hours[index] > 0) || (this.state.minutes[index] > 0 && this.state.hours[index] >= 0))
+            && this.state.current === 'devices' && this.state.hours[index]!=='' && this.state.minutes[index]!=='') || this.state.current !== 'devices') {
             fetch('http://10.0.2.235:8080/request', {
                 method: 'POST',
                 headers: {
@@ -140,13 +139,21 @@ class LoggedIn extends React.Component {
                     pending: false
                 })
             })
-
-
+            console.log(this.state.minutes[index]);
+            console.log(this.state.hours[index]);
+            var successMessage = [...this.state.error];
+            successMessage[index] = 'Request Sent';
+            this.setState({error: successMessage});
         } else {
             var tempError = [...this.state.error];
             tempError[index] = 'field cannot be empty'
             this.setState({error: tempError});
         }
+        this.setState({
+        hours:[''],
+        minutes:['']
+    });
+
     }
 
     handleLogout(e) {
@@ -215,11 +222,12 @@ class LoggedIn extends React.Component {
                                             <td className="TH3" key={item.itemName}>{item.itemName}</td>
                                             <td className="TH3"><input type="number" min="0" max="10" required={true}
                                                                        value={this.state.hours[index]}
-                                                                       onChange={(e) => this.handleHours(e, index)}/>
+                                                                       onChange={(e) => this.handleHours(e, index)}
+                                                                       required/>
                                                 <span> : </span>
                                                 <input type="number" min="0" max="59" required={true}
                                                        value={this.state.minutes[index]}
-                                                       onChange={(e) => this.handleMinutes(e, index)}
+                                                       onChange={(e) => this.handleMinutes(e, index)} required
                                                 />
                                             </td>
                                             <td className="TH3" key={index}>
@@ -243,4 +251,4 @@ class LoggedIn extends React.Component {
                     )
                     }
                     }
-                    export default LoggedIn
+                    export default LoggedIn;

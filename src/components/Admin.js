@@ -107,7 +107,7 @@ export default class App extends Component {
             body: JSON.stringify(this.state.activeInfo[index])
         });
         var array = [...this.state.status];
-        array.splice(index,1);
+        array.splice(index, 1);
         this.setState({status: array});
     }
 
@@ -122,8 +122,12 @@ export default class App extends Component {
             body: JSON.stringify(this.state.activeInfo[index])
         });
         var array = [...this.state.status];
-        array.splice(index,1);
+        array.splice(index, 1);
         this.setState({status: array});
+
+        var tempSno = [...this.state.serialNumbers];
+        tempSno.splice(index, 1);
+        this.setState({serialNumbers: tempSno});
     }
 
     async handleAccept(index) {
@@ -198,12 +202,12 @@ export default class App extends Component {
         }
         console.log(this.state.status);
         var tempStatus = [...this.state.status];
-        tempStatus.splice(index,1);
+        tempStatus.splice(index, 1);
         this.setState({status: tempStatus});
         console.log(this.state.status);
         console.log(this.state.serialNumbers);
         var tempSno = [...this.state.serialNumbers];
-        tempSno.splice(index,1);
+        tempSno.splice(index, 1);
         this.setState({serialNumbers: tempSno});
         console.log(this.state.serialNumbers);
     }
@@ -249,11 +253,13 @@ export default class App extends Component {
                                 <ListGroup>
                                     <ListGroup.Item variant="info">Requests</ListGroup.Item>
                                     <ListGroup.Item action
-                                                    onClick={() => this.handleClick('active')}>New {this.state.activeInfo.length>0?<Badge
-                                        variant="danger"> {this.state.activeInfo.length}</Badge>:false}</ListGroup.Item>
+                                                    onClick={() => this.handleClick('active')}>New {this.state.activeInfo.length > 0 ?
+                                        <Badge
+                                            variant="danger"> {this.state.activeInfo.length}</Badge> : false}</ListGroup.Item>
                                     <ListGroup.Item action
-                                                    onClick={() => this.handleClick('pending')}>Pending {this.state.pendingInfo.length>0?<Badge
-                                        variant="danger"> {this.state.pendingInfo.length}</Badge>:false}</ListGroup.Item>
+                                                    onClick={() => this.handleClick('pending')}>Pending {this.state.pendingInfo.length > 0 ?
+                                        <Badge
+                                            variant="danger"> {this.state.pendingInfo.length}</Badge> : false}</ListGroup.Item>
                                     <ListGroup.Item action
                                                     onClick={() => this.handleClick('history')}>History</ListGroup.Item>
                                     <br/>
@@ -303,7 +309,7 @@ export default class App extends Component {
                                 </Table></> : false}
 
                                 {this.state.current === 'active' ? <><h1 align="center">Active Requests</h1>
-                                    <Table striped bordered hover>
+                                    <Table hover>
                                         <thead>
                                         <tr className="TH">
                                             <th>Item Name</th>
@@ -326,30 +332,30 @@ export default class App extends Component {
                                                     <td className="TH2" key='d'>{item.dept}</td>
                                                     <td className="TH2" key='e'>{item.requestDate}</td>
                                                     {this.state.status[index] !== 'accepted' ?
-                                                        <td className="TH2" key='f'><Button
+                                                        <td className="TH2" key='f'><div className="ButtonDiv"><Button
                                                             className="btnn"
                                                             onClick={() => this.handleAccept(index)}><i
                                                             className="fa fa-check" aria-hidden="true"></i></Button>
                                                             <Button variant="danger" className="btnn"
                                                                     onClick={() => this.handleReject(index)}><i
-                                                                className="fa fa-trash" aria-hidden="true"></i></Button>
+                                                                className="fa fa-trash" aria-hidden="true"></i></Button></div>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
-                                                        <td className="TH2" key='g'><Button variant="success"
+                                                        <td className="TH2" key='g'><div  className="ButtonDiv"><Button variant="success"
                                                                                             onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
                                                                     onClick={() => this.handleRejectAfterAccept(index)}><i
-                                                                className="fa fa-trash" aria-hidden="true"></i></Button>
+                                                                className="fa fa-trash" aria-hidden="true"></i></Button></div>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type !== 'devices' ?
-                                                        <td className="TH2" key="h"><Button
+                                                        <td className="TH2" key="h"><div  className="ButtonDiv"><Button
                                                             variant="success"
                                                             onClick={() => this.handleConfirm(index)}><i
                                                             className='fa fa-check-square-o'></i></Button>
                                                             <Button variant="danger" className="btnn"
                                                                     onClick={() => this.handleRejectAfterAccept(index)}><i
-                                                                className="fa fa-trash" aria-hidden="true"></i></Button>
+                                                                className="fa fa-trash" aria-hidden="true"></i></Button></div>
                                                         </td> : false}
                                                     {this.state.status[index] === 'accepted' && item.type === 'devices' ?
                                                         <td className="TH2"

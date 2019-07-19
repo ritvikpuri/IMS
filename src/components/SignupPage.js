@@ -32,10 +32,10 @@ class SignupPage extends Component {
         var upperCaseRegex=new RegExp("^(?=.*[A-Z])");
         var numberRegex=new RegExp("^(?=.*[0-9])");
         var specialCharacterRegex=new RegExp("^(?=.*[!@#\\$%\\^&])");
-        if (this.state.password.length < 9) this.setState({error: 'minimum 8 characters required'});
-        else if (!upperCaseRegex.test(this.state.password)) this.setState({error: 'password must contain an uppercase letter'});
-        else if (!numberRegex.test(this.state.password)) this.setState({error: 'password must contain a digit'});
-        else if (!specialCharacterRegex.test(this.state.password))  this.setState({error: 'password must contain a special character'});
+        if (this.state.password.length < 8) this.setState({error: 'Minimum 8 characters required in password'});
+        else if (!upperCaseRegex.test(this.state.password)) this.setState({error: 'Password must contain an uppercase letter'});
+        else if (!numberRegex.test(this.state.password)) this.setState({error: 'Password must contain a digit'});
+        else if (!specialCharacterRegex.test(this.state.password))  this.setState({error: 'Password must contain a special character'});
         else {
             fetch('http://10.0.2.235:8080/signup', {
                 method: 'POST',
@@ -52,7 +52,7 @@ class SignupPage extends Component {
                 })
             }).then((result) => {
                 result.json().then((json) => {
-                    if (json) this.setState({error: 'signup successful! go to login'});
+                    if (json) this.setState({error: 'Signup successful! go to login'});
                     else this.setState({error: 'Employee code already exists'});
                 })
             })

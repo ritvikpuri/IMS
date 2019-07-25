@@ -22,34 +22,74 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+/**
+ * The Class NotificationService.
+ */
 @Service
 public class NotificationService {
 
+	/** The java mail sender. */
 	private JavaMailSender javaMailSender;
 
+	/**
+	 * Instantiates a new notification service.
+	 *
+	 * @param javaMailSender the java mail sender
+	 */
 	@Autowired
 	public NotificationService(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
 
+	/** The config. */
 	@Autowired
 	private Configuration config;
 
+	/**
+	 * Send notification accept.
+	 *
+	 * @param model the model
+	 * @param request the request
+	 * @param loggedInUser the logged in user
+	 */
 	@Async("threadPoolTaskExecutor")
 	public void sendNotificationAccept(ModelMap model, Request request, User loggedInUser) {
 		sendEmail(model, request, loggedInUser, "email-template.ftl", "Request Approved!");
 	}
 
+	/**
+	 * Send notification reject.
+	 *
+	 * @param model the model
+	 * @param request the request
+	 * @param loggedInUser the logged in user
+	 */
 	@Async("threadPoolTaskExecutor")
 	public void sendNotificationReject(ModelMap model, Request request, com.example.demo.classes.User loggedInUser) {
 		sendEmail(model, request, loggedInUser, "email-unavailable-template.ftl", "Item Unavailable");
 	}
 	
+	/**
+	 * Send notification reject after accept.
+	 *
+	 * @param model the model
+	 * @param request the request
+	 * @param loggedInUser the logged in user
+	 */
 	@Async("threadPoolTaskExecutor")
 	public void sendNotificationRejectAfterAccept(ModelMap model, Request request, com.example.demo.classes.User loggedInUser) {
 		sendEmail(model, request, loggedInUser, "email-not-collected-template.ftl", "Item Not Collected");
 	}
 
+	/**
+	 * Send email.
+	 *
+	 * @param model the model
+	 * @param request the request
+	 * @param loggedInUser the logged in user
+	 * @param templateName the template name
+	 * @param subject the subject
+	 */
 	@Async("threadPoolTaskExecutor")
 	private void sendEmail(ModelMap model, Request request, User loggedInUser, String templateName, String subject) {
 		MimeMessage message = javaMailSender.createMimeMessage();

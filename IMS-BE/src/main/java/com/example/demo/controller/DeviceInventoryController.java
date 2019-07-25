@@ -15,16 +15,26 @@ import com.example.demo.classes.Inventory;
 import com.example.demo.service.DeviceInventoryService;
 import com.example.demo.service.InventoryService;
 
+/**
+ * The Class DeviceInventoryController.
+ */
 @Controller
 @CrossOrigin(origins = "*")
 public class DeviceInventoryController {
 	
+	/** The device inventory service. */
 	@Autowired
 	DeviceInventoryService deviceInventoryService;
 	
+	/** The inventory service. */
 	@Autowired
 	InventoryService inventoryService;
 	
+	/**
+	 * Adds a new device to the inventory.
+	 *
+	 * @param deviceInventory
+	 */
 	@PostMapping("/inventory/add/devices")
 	public void addDevices(@RequestBody DeviceInventory deviceInventory) {
 		deviceInventoryService.save(deviceInventory);
@@ -48,6 +58,11 @@ public class DeviceInventoryController {
 		}
 	}
 	
+	/**
+	 * Gets the list of all devices.
+	 *
+	 * @return the devices
+	 */
 	@GetMapping("/deviceinventory/devices")
 	public List<DeviceInventory> getDevices() {
 		return deviceInventoryService.findAll();

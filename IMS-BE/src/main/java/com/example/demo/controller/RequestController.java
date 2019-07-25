@@ -28,28 +28,43 @@ import com.example.demo.service.NotificationService;
 import com.example.demo.service.RequestService;
 import com.example.demo.service.UserService;
 
+/**
+ * The Class RequestController.
+ */
 @RestController
 @CrossOrigin(origins = "*")
 public class RequestController {
 
+	/** The request service. */
 	@Autowired
 	RequestService requestService;
 
+	/** The notification service. */
 	@Autowired
 	NotificationService notificationService;
 
+	/** The user service. */
 	@Autowired
 	UserService userService;
 
+	/** The inventory service. */
 	@Autowired
 	InventoryService inventoryService;
 
+	/** The device inventory service. */
 	@Autowired
 	DeviceInventoryService deviceInventoryService;
 
-//	private static final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+/** The formatter. */
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
+	/**
+	 * This method is called when the user sends a new request for an item.
+	 *
+	 * @param request
+	 * @return the request
+	 * @throws ParseException
+	 */
 	@PostMapping("/request")
 	public void getRequest(@RequestBody Request request) throws ParseException {
 		try {
@@ -65,16 +80,31 @@ public class RequestController {
 
 	}
 
+	/**
+	 * Gets the list of all active requests.
+	 *
+	 * @return the active request
+	 */
 	@GetMapping("/request/active")
 	public List<Request> getActiveRequest() {
 		return requestService.findByActive(true);
 	}
 
+	/**
+	 * Gets the list of all pending requests.
+	 *
+	 * @return the pending request
+	 */
 	@GetMapping("/request/pending")
 	public List<Request> getPendingRequest() {
 		return requestService.findByPending(true);
 	}
 
+	/**
+	 * Gets the request history.
+	 *
+	 * @return the history
+	 */
 	@GetMapping("/request/history")
 	public List<Request> getHistory() {
 		List<Request> listOfRequests = requestService.findByActive(false);
@@ -87,6 +117,13 @@ public class RequestController {
 		return newList;
 	}
 
+	/**
+	 * This method is called if the admin rejcts the request incase
+	 * of an item being unavailable.
+	 *
+	 * @param model
+	 * @param request
+	 */
 	@PostMapping("/request/reject")
 	public void rejectRequest(ModelMap model, @RequestBody Request request) {
 		requestService.deleteById(request.getId());
@@ -94,6 +131,13 @@ public class RequestController {
 		notificationService.sendNotificationReject(model, request, loggedInUser);
 	}
 
+	/**
+	 * This method is called incase the user does not come to collect an item
+	 * after it has been assigned to him.
+	 *
+	 * @param model the modelMap
+	 * @param request
+	 */
 	@PostMapping("/request/rejectAfterAccept")
 	public void rejectAfterAccept(ModelMap model, @RequestBody Request request) {
 		User loggedInUser = userService.findByEmpId(request.getEmpId());
@@ -112,6 +156,13 @@ public class RequestController {
 		requestService.deleteById(request.getId());
 	}
 
+	/**
+	 * This method is called when the admin accepts the request
+	 * and an item is assgined.
+	 *
+	 * @param model the modelMap
+	 * @param request the request
+	 */
 	@PostMapping("/request/accept/item")
 	public void acceptItemRequest(ModelMap model, @RequestBody Request request) {
 		User loggedInUser = userService.findByEmpId(request.getEmpId());
@@ -126,6 +177,11 @@ public class RequestController {
 		inventoryService.saveAndFlush(currItem);
 	}
 
+	/**
+	 * This method is called when the user collects the item.
+	 *
+	 * @param request
+	 */
 	@PostMapping("/request/confirm/item")
 	public void confirmItemRequest(@RequestBody Request request) {
 		request.setActive(false);
@@ -135,6 +191,11 @@ public class RequestController {
 		requestService.saveAndFlush(request);
 	}
 
+	/**
+	 * This method is called when the user collects the device.
+	 *
+	 * @param request the request
+	 */
 	@PostMapping("/request/confirm/device")
 	public void confrimDeviceRequest(@RequestBody Request request) {
 
@@ -155,6 +216,14 @@ public class RequestController {
 		requestService.saveAndFlush(request);
 	}
 
+	/**
+	 * Accept device request.
+	 *
+	 * @param model 
+	 * @param request 
+	 * @return the string
+	 * @throws ItemNotFoundException
+	 */
 	@PostMapping("/request/accept/device")
 	public String acceptDeviceRequest(ModelMap model, @RequestBody Request request) throws ItemNotFoundException {
 
@@ -178,6 +247,11 @@ public class RequestController {
 
 	}
 
+	/**
+	 * This method is called when a device is returned.
+	 *
+	 * @param request the request
+	 */
 	@PostMapping("request/returned")
 	public void itemReturned(@RequestBody Request request) {
 		request.setActive(false);
